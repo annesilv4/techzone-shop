@@ -3,7 +3,7 @@ import { faFacebook, faInstagram, faTwitter, faLinkedin } from '@fortawesome/fre
 import { faPhone, faEnvelope, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { Footer, FooterContainer, FooterSection, SectionTitle, FooterLink, ContactInfo, SocialIcons, SocialLink, FooterBottom, PaymentMethods, Badge } from './styles';
 
-export default function Footer() {
+export default function FooterComponents() {
     return (
         <Footer>
             <FooterContainer>

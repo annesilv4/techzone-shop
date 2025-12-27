@@ -6,7 +6,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons/faUser';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons/faShoppingCart';
 import { Header, Logo, Search, SearchIcon, User, Cart, CartBadge } from './styles';
 
-export default function Header() {
+export default function HeaderComponents() {
 
     return (
         <Header>

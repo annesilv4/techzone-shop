@@ -1,14 +1,14 @@
-import Header from "../../components/header";
+import HeaderComponents from "../../components/header";
 import Navigation from "../../components/navigation";
-import Footer from "../../components/footer";
+import FooterComponents from "../../components/footer";
 
 export default function HomePage() {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-            <Header />
+            <HeaderComponents />
             <Navigation />
             <main style={{ flex: 1 }}></main>
-            <Footer />
+            <FooterComponents />
         </div>
     )
 }
