@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
-import { Nav, CepContainer, CepInput, ChevronIcon, NavLink, NavItem, DropdownMenu, DropdownItem, LoadingSpinner } from './styles';
+import { Nav, CepContainer, CepInput, ChevronIcon, NavLink, NavItem, DropdownMenu, DropdownItem } from './styles';
 
 export default function Navigation() {
     const [cep, setCep] = useState('');
@@ -55,7 +55,7 @@ export default function Navigation() {
                 )}
             </CepContainer>
 
-            <NavLink href="" onClick={(e) => {
+            <NavLink href="products" onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 setOpenDropdown(null);
@@ -67,15 +67,16 @@ export default function Navigation() {
                     <ChevronIcon icon={faChevronDown} isOpen={openDropdown === 'categorias'} />
                 </NavLink>
                 <DropdownMenu isOpen={openDropdown === 'categorias'}>
-                    <DropdownItem href="">Smartphones</DropdownItem>
-                    <DropdownItem href="">Notebooks</DropdownItem>
-                    <DropdownItem href="">Gamer</DropdownItem>
-                    <DropdownItem href="">Acessórios</DropdownItem>
-                    <DropdownItem href="">Wearables</DropdownItem>
+                    <DropdownItem href="categorias/smartphones">Smartphones</DropdownItem>
+                    <DropdownItem href="categorias/notebooks">Notebooks</DropdownItem>
+                    <DropdownItem href="categorias/gamer">Gamer</DropdownItem>
+                    <DropdownItem href="categorias/acessorios">Acessórios</DropdownItem>
+                    <DropdownItem href="categorias/wearables">Wearables</DropdownItem>
+                    <DropdownItem href="categorias/perifericos">Periféricos</DropdownItem>
                 </DropdownMenu>
             </NavItem>
 
-            <NavLink href="" onClick={(e) => {
+            <NavLink href="offers" onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 setOpenDropdown(null);
