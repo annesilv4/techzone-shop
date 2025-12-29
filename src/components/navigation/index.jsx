@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
-import { Nav, CepContainer, CepInput, ChevronIcon, NavLink, NavItem, DropdownMenu, DropdownItem } from './styles';
+import { Nav, CepContainer, CepInput, ChevronIcon, NavLink, NavItem, DropdownMenu, DropdownItem, LoadingSpinner } from './styles';
 
 export default function Navigation() {
     const [cep, setCep] = useState('');
@@ -50,7 +50,7 @@ export default function Navigation() {
                 {loading && <span style={{ color: '#fff', fontSize: '12px' }}>Buscando...</span>}
                 {address && (
                     <div style={{ color: '#fff', fontSize: '14px' }}>
-                        - {address.localidade}, {address.uf}
+                        - Enviar para {address.localidade}, {address.uf}
                     </div>
                 )}
             </CepContainer>
