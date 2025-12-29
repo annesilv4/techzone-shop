@@ -5,6 +5,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 import { faUser } from '@fortawesome/free-solid-svg-icons/faUser';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons/faShoppingCart';
 import { Header, Logo, Search, SearchIcon, User, Cart, CartBadge } from './styles';
+import { Link } from 'react-router-dom';
 
 export default function HeaderComponents() {
 
@@ -21,10 +22,10 @@ export default function HeaderComponents() {
 
             <User className='header__user'>
                 <FontAwesomeIcon icon={faUser} />
-                <p><a href="">Entre</a> ou <a href="">Se cadastre</a></p>
+                <p><a href="register">Entre</a> ou <a href="register">Se cadastre</a></p>
             </User>
 
-            <Cart className='header__cart'>
+            <Cart as={Link} className='header__cart' to='/cart'>
                 <FontAwesomeIcon icon={faShoppingCart} />
                 <CartBadge>0</CartBadge>
             </Cart>
