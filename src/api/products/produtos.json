@@ -1,0 +1,130 @@
+[
+  {
+    "id": 1,
+    "name": "Top 1 Webcam Premium Full HD 1080p com Microfone, USB Plug & Play, Foco Automático",
+    "price": 32.9,
+    "category": "acessorios",
+    "image": "../../../public/produtos/webcam.jpg",
+    "description": "Para PC, Notebook, Zoom, Teams, Meet Skype YouTube Discord e Mais – Ideal para Home Office Reuniões e Videochamadas"
+  },
+  {
+    "id": 2,
+    "name": "Suporte Articulado de Mesa",
+    "price": 174.89,
+    "category": "acessorios",
+    "image": "../../../public/produtos/suporte-monitor.jpg",
+    "description": "ELG, F80N, Suporte Articulado de Mesa, Pistão a Gás, Design Compacto e Retrátil, Ergonômico, Monitores 17'' a 35'', 2kg a 9kg, Preto"
+  },
+  {
+    "id": 3,
+    "name": "Pendrive Hiksemi Dual Slim 32GB",
+    "price": 74.9,
+    "category": "acessorios",
+    "image": "../../../public/produtos/pendrive.jpg",
+    "description": "Pendrive Hiksemi Dual Slim 32GB com conexão USB C e USB A"
+  },
+  {
+    "id": 4,
+    "name": "Linsoul Kiwi Ears Cadenza IEM",
+    "price": 330.3,
+    "category": "acessorios",
+    "image": "../../../public/produtos/linsoul-kiwi.jpg",
+    "description": "Linsoul Kiwi Ears Cadenza IEM com driver dinâmico de berílio de 10 mm impresso em 3D com plugue intercambiável removível 0,78 cabo IEM de 3,5 mm com 2 pinos para músicos e audiófilos"
+  },
+  {
+    "id": 5,
+    "name": "PlayStation®5 Slim Digital 825GB",
+    "price": 3112.71,
+    "category": "gamer",
+    "image": "../../../public/produtos/playstation.jpg",
+    "description": "PlayStation®5 Slim Digital 825GB – Pacote ASTRO BOT e Gran Turismo 7"
+  },
+  {
+    "id": 6,
+    "name": "Microsoft Xbox Series X 1TB",
+    "price": 4300.0,
+    "category": "gamer",
+    "image": "../../../public/produtos/xbox.webp",
+    "description": "Microsoft Xbox Series X 1TB - Bom (Recondicionado)"
+  },
+  {
+    "id": 7,
+    "name": "Volante Com Pedais Logitech G920 Driving Force",
+    "price": 1900.0,
+    "category": "gamer",
+    "image": "../../../public/produtos/volante-logitech.webp",
+    "description": "Volante Com Pedais Logitech G920 Driving Force - Xbox 1 E Pc"
+  },
+  {
+    "id": 8,
+    "name": "Controle Sem Fio Joystick Bluetooth Para Ps4",
+    "price": 119.99,
+    "category": "gamer",
+    "image": "../../../public/produtos/console-ps4.webp",
+    "description": "Controle Sem Fio Joystick Bluetooth Para Ps4 Videogame Tv Preto"
+  },
+  {
+    "id": 9,
+    "name": "Notebook ASUS Vivobook 15",
+    "price": 3299.0,
+    "category": "notebooks",
+    "image": "../../../public/produtos/notebook-asus.jpg",
+    "description": "Notebook ASUS Vivobook 15, Intel Core i5, 16 GB, 512 GB SSD W11 Home, 15.6'' FHD, Quiet Blue -X1504VA-NJ1745W"
+  },
+  {
+    "id": 10,
+    "name": "Notebook Acer Nitro V15",
+    "price": 4567.0,
+    "category": "notebooks",
+    "image": "../../../public/produtos/notebook-acer-nitro.webp",
+    "description": "Notebook Acer Nitro V15 ANV15-51-58AZ Core I5-13420h 8gb 512gb RTX 3050 Cor Preto"
+  },
+  {
+    "id": 11,
+    "name": "Notebook Samsung Galaxy Book4",
+    "price": 2519.1,
+    "category": "notebooks",
+    "image": "../../../public/produtos/notebook-samsung.webp",
+    "description": "Notebook Samsung Galaxy Book4 Intel® U300 (1.20 Ghz, até 4.4GHz, 8 MB L3 Cache), Windows 11 Home, 8GB, 256GB SSD, UHD Graphics, 15.6'' Full HD LED, 1.55kg"
+  },
+  {
+    "id": 12,
+    "name": "Notebook Vaio Fe16 Amd Ryzen 7",
+    "price": 3119.0,
+    "category": "notebooks",
+    "image": "../../../public/produtos/notebook-vaio.webp",
+    "description": "Notebook Vaio Fe16 Amd Ryzen 7-5825u Linux 16gb RAM 512gb Ssd Wi-Fi 6 Tela 16 Ips Wuxga Antirreflexo Cinza Grafite Vjfe69f11xb0121h - Permite upgrade de memória RAM e SSD"
+  },
+  {
+    "id": 13,
+    "name": "Headset Redragon",
+    "price": 159.9,
+    "category": "perifericos",
+    "image": "../../../public/produtos/headset-redragon.webp",
+    "description": "Fone Headset Gamer Profissional Mento Rgb H270-rgb Redragon Cor Preto"
+  },
+  {
+    "id": 14,
+    "name": "Mouse Redragon",
+    "price": 199.99,
+    "category": "perifericos",
+    "image": "../../../public/produtos/mouse-redragon.jpg",
+    "description": "Mouse Gamer Redragon Cobra Pro, Wireless, RGB, 16000 DPI, 8 Botoes, Preto, M711-PRO"
+  },
+  {
+    "id": 15,
+    "name": "Teclado Redragon",
+    "price": 199.99,
+    "category": "perifericos",
+    "image": "../../../public/produtos/teclado-redragon.jpg",
+    "description": "Teclado Mecanico Gamer Redragon FIZZ, RGB, ABNT2, Switch Marron, Preto, K617-RGB-B-PT-BROWN"
+  },
+  {
+    "id": 16,
+    "name": "Headset Logitech",
+    "price": 890.0,
+    "category": "perifericos",
+    "image": "../../../public/produtos/headset-logitech.webp",
+    "description": "Headset Gamer Sem Fio Logitech G733 - Preto"
+  }
+]

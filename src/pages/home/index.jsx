@@ -7,7 +7,8 @@ export default function HomePage() {
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
             <HeaderComponents />
             <Navigation />
-            <main style={{ flex: 1 }}></main>
+            <main style={{ flex: 1 }}>
+            </main>
             <FooterComponents />
         </div>
     )
