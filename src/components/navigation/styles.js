@@ -118,8 +118,12 @@ export const CepContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-right: 340px;
+    margin-right: 210px;
     margin-left: 133px;
+    flex: 0 0 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     @media (max-width: 768px) {
         display: none;
