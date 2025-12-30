@@ -126,5 +126,69 @@
     "category": "perifericos",
     "image": "../../../public/produtos/headset-logitech.webp",
     "description": "Headset Gamer Sem Fio Logitech G733 - Preto"
+  },
+  {
+    "id": 17,
+    "name": "Smartphone Xiaomi Redmi 15",
+    "price": 1127.0,
+    "category": "smartphones",
+    "image": "../../../public/produtos/smartphone-xiaomi.webp",
+    "description": "Smartphone Xiaomi Redmi 15 8gb 256gb Tela 6,9 144hz, Bateria 7.000 Mah, 50 Mp Cinza"
+  },
+  {
+    "id": 18,
+    "name": "Samsung Galaxy S25 Ultra 5G",
+    "price": 5999.0,
+    "category": "smartphones",
+    "image": "../../../public/produtos/smartphone-samsung-s25.webp",
+    "description": "Samsung Galaxy S25 Ultra 5G 256GB Galaxy AI Titânio Preto 6,9 12GB RAM Câm. Quádrupla 200+50+10+50MP Bateria 5000mAh Dual Chip"
+  },
+  {
+    "id": 19,
+    "name": "Smartphone Motorola Moto G15",
+    "price": 594.15,
+    "category": "smartphones",
+    "image": "../../../public/produtos/smartphone-motorola.webp",
+    "description": "Smartphone Motorola Moto G15 - 128gb 12gb (4gb Ram+8gb Ram Boost) E Camera 50mp Com Ai E Night Vision Bateria De 5200 Mah Tela Fhd+ 6.7 Com Superbrilho Nfc Azul Claro"
+  },
+  {
+    "id": 20,
+    "name": "iPhone 17 256 GB 8 GB Preto",
+    "price": 7198.96,
+    "category": "smartphones",
+    "image": "../../../public/produtos/iphone-17.webp",
+    "description": "iPhone 17 256 GB 8 GB Preto - Distribuidor Autorizado"
+  },
+  {
+    "id": 21,
+    "name": "RELÓGIO REDMI WATCH 5 ACTIVE",
+    "price": 239.99,
+    "category": "wearables",
+    "image": "../../../public/produtos/wearable-redmi.jpg",
+    "description": "RELÓGIO REDMI WATCH 5 ACTIVE"
+  },
+  {
+    "id": 22,
+    "name": "Smartwatch, HUAWEI WATCH FIT 4",
+    "price": 905.04,
+    "category": "wearables",
+    "image": "../../../public/produtos/wearable-huawei.jpg",
+    "description": "Smartwatch, HUAWEI WATCH FIT 4, Modos Esportivos Aprimorados, Assistente de Bem-Estar Emocional, Bateria com Autonomia de Até 10 Dias, Compatível com iOS e Android, Roxo"
+  },
+  {
+    "id": 23,
+    "name": "Samsung Galaxy Watch8",
+    "price": 1619.11,
+    "category": "wearables",
+    "image": "../../../public/produtos/wearable-samsung.jpg",
+    "description": "Samsung Galaxy Watch8 Smartwatch 40mm BT, Galaxy AI - Grafite"
+  },
+  {
+    "id": 24,
+    "name": "Samsung Galaxy Ring Tamanho 7",
+    "price": 2372.1,
+    "category": "wearables",
+    "image": "../../../public/produtos/ring-samsung.jpg",
+    "description": "Samsung Galaxy Ring Tamanho 7, Monitor de treino, rastreador de sono, bateria de até 7 dias, Material em titânio - Titânio Preto"
   }
 ]
