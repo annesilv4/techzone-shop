@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // Importações das páginas do aplicativo
 import HomePage from './pages/home';
 import SearchPage from './pages/search';
+import RegisterPage from './pages/register';
 
 // Importação do contexto para gerenciar estado global de produtos
 import { ProductProvider } from './context/productContext';
@@ -22,9 +23,12 @@ export default function App() {
         <Routes>
           {/* Rota para a página inicial - caminho raiz '/' */}
           <Route path='/' element={<HomePage />} />
-          
+
           {/* Rota para a página de busca */}
           <Route path='/search' element={<SearchPage />} />
+
+          {/* Rota para o usuário criar conta na mesma página */}
+          <Route path='/register' element={<RegisterPage />} />
         </Routes>
       </Router>
     </ProductProvider>
