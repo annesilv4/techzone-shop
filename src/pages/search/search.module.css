@@ -1,0 +1,133 @@
+/* Contêiner principal da página de busca */
+.searchContainer {
+  max-width: 1200px; /* Limita a largura máxima */
+  margin: 40px 100px; /* Espaçamento: 40px acima/abaixo e 100px nos lados */
+  display: flex; /* Ativa flexbox */
+  flex-direction: column; /* Organiza itens em coluna */
+}
+
+/* Estilo do título h1 dentro do contêiner */
+.searchContainer h1 {
+  font-size: 28px; /* Tamanho da fonte */
+  margin-bottom: 30px; /* Espaço abaixo do título */
+  color: #333; /* Cor cinza escura */
+}
+
+/* Grade responsiva para exibir produtos */
+.resultsGrid {
+  display: grid; /* Usa CSS Grid */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Cria colunas automáticas com mínimo de 250px */
+  gap: 20px; /* Espaço entre os itens */
+  margin-bottom: 40px; /* Espaço abaixo da grade */
+  align-items: stretch; /* Estende itens verticalmente */
+  justify-content: stretch; /* Estende itens horizontalmente */
+}
+
+/* Estilo do card de produto */
+.productCard {
+  border: 1px solid #e0e0e0; /* Borda cinza clara */
+  border-radius: 8px; /* Cantos arredondados */
+  padding: 15px; /* Espaço interno */
+  text-align: center; /* Centraliza o texto */
+  transition: transform 0.3s, box-shadow 0.3s; /* Animação suave */
+  background: white; /* Fundo branco */
+  display: flex; /* Ativa flexbox */
+  flex-direction: column; /* Organiza conteúdo em coluna */
+  height: 100%; /* Ocupa toda a altura disponível */
+}
+
+/* Efeito ao passar o mouse sobre o card */
+.productCard:hover {
+  transform: translateY(-5px); /* Move o card para cima */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
+}
+
+/* Contêiner da imagem do produto */
+.imageContainer {
+  width: 100%; /* Largura total */
+  height: 200px; /* Altura fixa */
+  overflow: hidden; /* Esconde imagem que ultrapassa */
+  background-color: #f9f9f9; /* Fundo cinza muito claro */
+  cursor: pointer; /* Cursor de mão ao passar */
+}
+
+/* Estilo da imagem dentro do contêiner */
+.imageContainer img {
+  width: 100%; /* Largura total */
+  height: 100%; /* Altura total */
+  object-fit: cover; /* Preenche sem distorcer a proporção */
+  transition: transform 0.3s ease; /* Animação suave */
+}
+
+/* Estilo do título do produto */
+.productCard h3 {
+  font-size: 16px; /* Tamanho da fonte */
+  margin: 10px 0; /* Espaço acima e abaixo */
+  color: #333; /* Cor cinza escura */
+}
+
+/* Estilo da descrição do produto */
+.description {
+  font-size: 0.85rem; /* Tamanho reduzido */
+  color: #666; /* Cor cinza média */
+  margin-bottom: 15px; /* Espaço abaixo */
+  flex-grow: 1; /* Ocupa espaço disponível (empurra rodapé para baixo) */
+  line-height: 1.4; /* Altura da linha para melhor legibilidade */
+}
+
+/* Rodapé do card com categoria e preço */
+.footer {
+  display: flex; /* Ativa flexbox */
+  justify-content: space-between; /* Distribui itens com espaço entre eles */
+  align-items: center; /* Centraliza verticalmente */
+  margin-bottom: 15px; /* Espaçamento abaixo */
+  padding-top: 15px; /* Espaçamento interno acima */
+  border-top: 1px solid #eee; /* Linha divisória leve */
+}
+
+/* Estilo da tag de categoria */
+.category {
+  font-size: 12px; /* Tamanho pequeno */
+  color: white; /* Texto branco */
+  margin: 5px 0; /* Pequeno espaço acima e abaixo */
+  background: #667eea; /* Fundo azul/roxo */
+  align-items: center; /* Centraliza conteúdo verticalmente */
+  padding: 7px; /* Espaço interno */
+  border-radius: 10px; /* Cantos bem arredondados */
+  display: flex; /* Ativa flexbox */
+}
+
+/* Estilo do preço */
+.price {
+  font-size: 18px; /* Tamanho destacado */
+  font-weight: bold; /* Texto em negrito */
+  color: #667eea; /* Cor azul/roxo */
+  margin: 10px 0; /* Espaço acima e abaixo */
+}
+
+/* Estilo do botão de ação no card */
+.productCard button {
+  width: 100%; /* Ocupa toda a largura */
+  padding: 10px; /* Espaço interno */
+  margin-top: auto; /* Empurra o botão para o final */
+  background: #667eea; /* Fundo azul/roxo */
+  color: white; /* Texto branco */
+  border: none; /* Remove borda */
+  border-radius: 4px; /* Cantos levemente arredondados */
+  cursor: pointer; /* Cursor de clique */
+  font-size: 14px; /* Tamanho da fonte */
+  transition: background 0.3s; /* Animação ao mudar de cor */
+}
+
+/* Efeito ao passar o mouse sobre o botão */
+.productCard button:hover {
+  background: #764ba2; /* Muda para roxo mais escuro */
+}
+
+/* Mensagem exibida quando não há resultados */
+.noResults {
+  text-align: center; /* Centraliza o texto */
+  font-size: 18px; /* Tamanho da fonte */
+  color: #999; /* Cor cinza clara */
+  margin: 60px 0; /* Espaço acima e abaixo */
+}
