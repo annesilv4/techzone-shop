@@ -1,6 +1,8 @@
 import HeaderComponents from "../../components/header";
 import Navigation from "../../components/navigation";
+import Banner from "../../components/banner";
 import FooterComponents from "../../components/footer";
+import Catalogo from "../../components/catalogo";
 
 export default function HomePage() {
     return (
@@ -8,6 +10,8 @@ export default function HomePage() {
             <HeaderComponents />
             <Navigation />
             <main style={{ flex: 1 }}>
+                <Banner />
+                <Catalogo />
             </main>
             <FooterComponents />
         </div>
