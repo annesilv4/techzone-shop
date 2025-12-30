@@ -1,0 +1,50 @@
+/* Banner principal de boas-vindas */
+.banner {
+    /* Gradiente linear de roxo para roxo escuro */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 60px 20px; /* Espaçamento interno */
+    text-align: center; /* Centraliza o texto horizontalmente */
+    min-height: 300px; /* Altura mínima do banner */
+    display: flex; /* Ativa flexbox para centralizar verticalmente */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+}
+
+/* Container do conteúdo do banner */
+.content {
+    max-width: 600px; /* Largura máxima do conteúdo */
+}
+
+/* Título principal do banner */
+.content h1 {
+    font-size: 2.5rem; /* Tamanho grande para o título */
+    margin-bottom: 20px; /* Espaçamento abaixo */
+    font-weight: bold; /* Texto em negrito */
+}
+
+/* Parágrafo de descrição */
+.content p {
+    font-size: 1.2rem; /* Tamanho médio do texto */
+    margin-bottom: 30px; /* Espaçamento abaixo */
+    opacity: 0.95; /* Ligeira transparência */
+}
+
+/* Botão "Ver Catálogo" */
+.button {
+    background-color: white; /* Fundo branco */
+    color: #667eea; /* Texto roxo */
+    border: none; /* Remove bordas */
+    padding: 12px 40px; /* Espaçamento interno do botão */
+    font-size: 1rem; /* Tamanho normal do texto */
+    font-weight: bold; /* Texto em negrito */
+    border-radius: 5px; /* Cantos ligeiramente arredondados */
+    cursor: pointer; /* Muda o cursor para "mão" ao passar sobre */
+    transition: all 0.3s ease; /* Animação suave de 0.3s para todas as propriedades */
+}
+
+/* Efeito ao passar o mouse sobre o botão */
+.button:hover {
+    transform: translateY(-2px); /* Move o botão 2px para cima */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Adiciona sombra */
+}
