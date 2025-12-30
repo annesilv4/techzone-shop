@@ -1,4 +1,69 @@
+/* Container da barra de pesquisa - posição relativa para dropdown funcionar */
 .header__search {
   display: flex;
   align-items: center;
+  position: relative; /* Necessário para posicionar o dropdown absolutamente */
+}
+
+/* Dropdown do histórico de buscas */
+.searchHistory {
+  position: absolute; /* Posiciona sobre a barra de pesquisa */
+  top: 100%; /* Coloca logo abaixo do input */
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-top: none; /* Remove borda superior para se conectar ao input */
+  max-height: 250px; /* Limita altura para não ficar muito grande */
+  overflow-y: auto; /* Scrollbar se necessário */
+  z-index: 1000; /* Garante que fica acima de outros elementos */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
+}
+
+/* Título da seção de histórico */
+.historyTitle {
+  padding: 12px 15px;
+  font-size: 12px;
+  color: #999;
+  text-transform: uppercase; /* Texto em maiúscula */
+  font-weight: bold;
+  border-bottom: 1px solid #f0f0f0; /* Separador */
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espaço entre ícone e texto */
+}
+
+/* Cada item do histórico */
+.historyItem {
+  padding: 12px 15px;
+  cursor: pointer; /* Indica que é clicável */
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espaço entre ícone e termo */
+  transition: background 0.2s; /* Transição suave ao hover */
+  border-bottom: 1px solid #f9f9f9; /* Separador leve entre itens */
+  font-size: 14px;
+}
+
+/* Efeito hover - destaca quando passa o mouse */
+.historyItem:hover {
+  background: #f5f5f5; /* Muda cor de fundo */
+}
+
+/* Remove borda do último item para não ficar duplicada */
+.historyItem:last-child {
+  border-bottom: none;
+}
+
+/* Mensagem quando não há histórico */
+.emptyHistory {
+  padding: 20px 15px;
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Espaço entre ícone e texto */
 }
