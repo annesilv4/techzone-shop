@@ -1,0 +1,259 @@
+/* Container principal do catálogo */
+.catalogo {
+  padding: 60px 100px; /* Espaçamento interno */
+  background-color: #f5f5f5; /* Fundo cinza claro */
+}
+
+/* Seção de cada categoria */
+.categorySection {
+  margin-bottom: 80px; /* Espaçamento entre categorias */
+}
+
+/* Título de cada categoria */
+.categoryTitle {
+  font-size: 2rem; /* Tamanho grande */
+  color: #333; /* Cor escura */
+  margin-bottom: 30px; /* Espaçamento abaixo */
+  padding-bottom: 15px; /* Espaçamento interno abaixo */
+  border-bottom: 3px solid #667eea; /* Linha decorativa roxo */
+  display: flex; /* Apenas toma largura necessária */
+}
+
+/* Cabeçalho do catálogo */
+.header {
+  text-align: center; /* Centraliza o texto */
+  margin-bottom: 50px; /* Espaçamento abaixo */
+}
+
+/* Título principal do catálogo */
+.header h1 {
+  font-size: 2.5rem; /* Tamanho grande */
+  color: #333; /* Cor escura */
+  margin-bottom: 10px; /* Espaçamento abaixo */
+}
+
+/* Parágrafo de descrição do catálogo */
+.header p {
+  font-size: 1.1rem; /* Tamanho médio */
+  color: #666; /* Cor cinza média */
+}
+
+/* Grid de produtos - layout responsivo */
+.grid {
+  display: grid; /* Ativa layout em grid */
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(250px, 1fr)
+  ); /* Colunas automáticas de mín 250px */
+  gap: 30px; /* Espaçamento entre itens */
+  max-width: 1200px; /* Largura máxima do grid */
+  margin: 0 auto; /* Centraliza o grid */
+}
+
+/* Card individual de produto */
+.card {
+  background-color: white; /* Fundo branco */
+  border-radius: 8px; /* Cantos arredondados */
+  overflow: hidden; /* Esconde conteúdo que sai da borda */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animações suaves */
+  display: flex; /* Ativa flexbox */
+  flex-direction: column; /* Organiza verticalmente */
+  height: 100%; /* Altura total do espaço */
+}
+
+/* Efeito ao passar mouse sobre o card */
+.card:hover {
+  transform: translateY(-5px); /* Move card 5px para cima */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Aumenta sombra */
+}
+
+/* Container da imagem do produto */
+.imageContainer {
+  width: 100%; /* Largura total */
+  height: 200px; /* Altura fixa */
+  overflow: hidden; /* Esconde imagem que ultrapassa */
+  background-color: #f9f9f9; /* Fundo cinza muito claro */
+  cursor: pointer; /* Cursor de mão ao passar */
+}
+
+/* Imagem do produto */
+.imageContainer img {
+  width: 100%; /* Largura total */
+  height: 100%; /* Altura total */
+  object-fit: cover; /* Preenche sem distorcer */
+  transition: transform 0.3s ease; /* Animação suave */
+}
+
+/* Zoom na imagem ao passar mouse no card */
+.card:hover .imageContainer img {
+  transform: scale(1.05); /* Amplia 5% */
+}
+
+/* Modal de imagem ampliada */
+.modal {
+  position: fixed; /* Posição fixa na tela */
+  top: 0; /* Canto superior */
+  left: 0; /* Canto esquerdo */
+  width: 100%; /* Largura total */
+  height: 100%; /* Altura total */
+  background-color: rgba(0, 0, 0, 0.8); /* Fundo preto semi-transparente */
+  display: flex; /* Ativa flexbox */
+  align-items: center; /* Centraliza verticalmente */
+  justify-content: center; /* Centraliza horizontalmente */
+  z-index: 1000; /* Fica acima de outros elementos */
+  animation: fadeIn 0.3s ease; /* Animação de entrada */
+}
+
+/* Conteúdo do modal */
+.modalContent {
+  position: relative; /* Posicionamento relativo para elementos filhos */
+  max-width: 90vw; /* Máx 90% da largura da tela */
+  max-height: 90vh; /* Máx 90% da altura da tela */
+  background-color: white; /* Fundo branco */
+  border-radius: 8px; /* Cantos arredondados */
+  overflow: hidden; /* Esconde conteúdo que sai */
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); /* Sombra forte */
+}
+
+/* Imagem dentro do modal */
+.modalContent img {
+  width: 100%; /* Largura total */
+  height: 100%; /* Altura total */
+  object-fit: contain; /* Encaixa mantendo proporção */
+  max-height: 85vh; /* Máxima altura */
+}
+
+/* Botão para fechar o modal */
+.closeBtn {
+  position: absolute; /* Posição absoluta para overlay */
+  top: 15px; /* 15px do topo */
+  right: 15px; /* 15px da direita */
+  background-color: rgba(255, 255, 255, 0.9); /* Branco semi-transparente */
+  border: none; /* Sem borda */
+  width: 40px; /* Largura fixa */
+  height: 40px; /* Altura fixa (quadrado) */
+  border-radius: 50%; /* Faz um círculo */
+  font-size: 24px; /* Tamanho grande do X */
+  cursor: pointer; /* Cursor de mão */
+  display: flex; /* Ativa flexbox */
+  align-items: center; /* Centraliza verticalmente */
+  justify-content: center; /* Centraliza horizontalmente */
+  transition: background-color 0.3s ease; /* Animação suave */
+  z-index: 1001; /* Fica acima do modal */
+}
+
+/* Efeito ao passar mouse no botão fechar */
+.closeBtn:hover {
+  background-color: white; /* Fica branco sólido */
+}
+
+/* Animação fade-in para o modal */
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Começa invisível */
+  }
+  to {
+    opacity: 1; /* Termina visível */
+  }
+}
+
+/* Conteúdo dentro do card */
+.content {
+  padding: 20px; /* Espaçamento interno */
+  display: flex; /* Ativa flexbox */
+  flex-direction: column; /* Organiza verticalmente */
+  flex: 1; /* Toma espaço disponível */
+}
+
+/* Título do produto dentro do card */
+.content h3 {
+  font-size: 1rem; /* Tamanho normal */
+  color: #333; /* Cor escura */
+  margin-bottom: 10px; /* Espaçamento abaixo */
+  line-height: 1.4; /* Altura de linha */
+  min-height: 2.8em; /* Altura mínima para 2 linhas */
+}
+
+/* Descrição do produto */
+.description {
+  font-size: 0.85rem; /* Tamanho pequeno */
+  color: #666; /* Cor cinza */
+  margin-bottom: 15px; /* Espaçamento abaixo */
+  flex-grow: 1; /* Cresce para ocupar espaço */
+  line-height: 1.4; /* Altura de linha */
+}
+
+/* Rodapé do card com preço */
+.footer {
+  display: flex; /* Ativa flexbox */
+  justify-content: end; /* Espaço entre itens */
+  align-items: center; /* Centraliza verticalmente */
+  margin-bottom: 15px; /* Espaçamento abaixo */
+  padding-top: 15px; /* Espaçamento interno acima */
+  border-top: 1px solid #eee; /* Linha divisória leve */
+}
+
+/* Preço do produto */
+.price {
+  font-size: 1.3rem; /* Tamanho grande */
+  color: #667eea; /* Cor roxo */
+  font-weight: bold; /* Texto em negrito */
+}
+
+/* Botão "Adicionar ao Carrinho" */
+.btn {
+  background-color: #667eea; /* Fundo roxo */
+  color: white; /* Texto branco */
+  border: none; /* Sem borda */
+  padding: 12px 20px; /* Espaçamento interno */
+  border-radius: 5px; /* Cantos arredondados */
+  cursor: pointer; /* Cursor de mão */
+  font-size: 0.95rem; /* Tamanho pequeno */
+  font-weight: 600; /* Texto mais bold */
+  transition: background-color 0.3s ease; /* Animação suave */
+  width: 100%; /* Largura total */
+}
+
+/* Efeito ao passar mouse no botão */
+.btn:hover {
+  background-color: #764ba2; /* Roxo mais escuro */
+}
+
+/* Media query para tablets e dispositivos pequenos */
+@media (max-width: 768px) {
+  .catalogo {
+    padding: 40px 15px; /* Reduz espaçamento */
+  }
+
+  .header h1 {
+    font-size: 2rem; /* Reduz tamanho do título */
+  }
+
+  .grid {
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(200px, 1fr)
+    ); /* Colunas menores */
+    gap: 20px; /* Reduz espaçamento entre itens */
+  }
+
+  .content {
+    padding: 15px; /* Reduz espaçamento interno */
+  }
+
+  .imageContainer {
+    height: 150px; /* Reduz altura da imagem */
+  }
+}
+
+/* Media query para celulares */
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr; /* Uma coluna apenas */
+  }
+
+  .header h1 {
+    font-size: 1.5rem; /* Reduz muito o título */
+  }
+}
