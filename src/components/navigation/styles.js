@@ -1,7 +1,12 @@
+// Importações necessárias para componentes estilizados
 import styled from '@emotion/styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { keyframes } from '@emotion/react';
 
+// Função para evitar que props personalizadas (começando com $) sejam passadas ao DOM
+const shouldForwardProp = (prop) => !prop.startsWith('$');
+
+// Animação de slide down para o dropdown
 export const slideDown = keyframes`
     from {
         opacity: 0;
@@ -13,6 +18,7 @@ export const slideDown = keyframes`
     }
 `;
 
+// Componente estilizado para o container de navegação principal
 export const Nav = styled.nav`
         background-color: #2c5aa0;
         padding: 0 230px;
@@ -32,6 +38,7 @@ export const Nav = styled.nav`
         }
     `;
 
+// Componente estilizado para links de navegação
 export const NavLink = styled.a`
         color: #fff;
         text-decoration: none;
@@ -51,6 +58,7 @@ export const NavLink = styled.a`
         }
     `;
 
+// Componente estilizado para itens de navegação com dropdown
 export const NavItem = styled.div`
         position: relative;
 
@@ -59,7 +67,8 @@ export const NavItem = styled.div`
         }
     `;
 
-export const DropdownMenu = styled.div`
+// Componente estilizado para o menu dropdown (lista de categorias)
+export const DropdownMenu = styled("div", { shouldForwardProp })`
         position: absolute;
         top: 100%;
         left: -50%;
@@ -68,10 +77,11 @@ export const DropdownMenu = styled.div`
         min-width: 200px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         z-index: 1000;
-        display: ${props => props.isOpen ? 'block' : 'none'};
-        animation: ${props => props.isOpen ? slideDown : 'none'} 0.3s ease-in-out forwards;
+        display: ${props => props.$isOpen ? 'block' : 'none'};
+        animation: ${props => props.$isOpen ? slideDown : 'none'} 0.3s ease-in-out forwards;
     `;
 
+// Componente estilizado para itens dentro do dropdown
 export const DropdownItem = styled.a`
         display: block;
         color: #fff;
@@ -95,13 +105,15 @@ export const DropdownItem = styled.a`
         }
     `;
 
-export const ChevronIcon = styled(FontAwesomeIcon)`
+// Componente estilizado para o ícone chevron (seta) que rotaciona
+export const ChevronIcon = styled(FontAwesomeIcon, { shouldForwardProp })`
         font-size: 12px;
-        transform: ${props => props.isOpen ? 'rotate(180deg)' : 'rotate(0deg)'};
+        transform: ${props => props.$isOpen ? 'rotate(180deg)' : 'rotate(0deg)'};
         transition: transform 0.3s ease-in-out;
-        color: ${props => props.isOpen ? '#ffc107' : '#fff'};
+        color: ${props => props.$isOpen ? '#ffc107' : '#fff'};
     `;
 
+// Componente estilizado para o campo de entrada de CEP
 export const CepInput = styled.input`
         padding: 8px 12px;
         border: none;
@@ -114,6 +126,7 @@ export const CepInput = styled.input`
         }
     `;
 
+// Componente estilizado para o container do CEP
 export const CepContainer = styled.div`
     display: flex;
     align-items: center;

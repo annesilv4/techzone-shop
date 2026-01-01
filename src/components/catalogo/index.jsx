@@ -1,8 +1,10 @@
 // Importa hooks do React para gerenciar estado
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import styles from './styles.module.css';
 // Importa a lista de produtos do arquivo JSON
 import produtos from '../../api/products/produtos.json';
+// Importa o contexto do carrinho
+import { CartContext } from '../../context/cartContext';
 
 // Objeto que mapeia os IDs das categorias para seus nomes em português
 const categoryNames = {
@@ -19,6 +21,8 @@ export default function Catalogo() {
     const [productsByCategory, setProductsByCategory] = useState({});
     // Estado que armazena a imagem selecionada para exibir em modal (null = nenhuma selecionada)
     const [selectedImage, setSelectedImage] = useState(null);
+    // Contexto do carrinho
+    const cartContext = useContext(CartContext);
 
     // Hook que executa quando o componente monta
     useEffect(() => {
@@ -48,34 +52,77 @@ export default function Catalogo() {
         setSelectedImage(null);
     };
 
+    // Função para adicionar um produto ao carrinho
+    // Transforma os dados do JSON da API para o formato esperado pelo contexto do carrinho
+    const handleAddToCart = (product) => {
+        try {
+            // Mapeia os campos da API para o formato do carrinho
+            // API: id, name, description, price, image
+            // Carrinho: id, nome, descricao, preco, imagem
+            const cartProduct = {
+                id: product.id,                      // ID do produto (mantém igual)
+                nome: product.name,                  // Nome do produto
+                descricao: product.description,      // Descrição do produto
+                preco: product.price,                // Preço do produto
+                imagem: product.image                // URL da imagem do produto
+            };
+
+            // Logs para debug (verificar contexto e dados do produto)
+            console.log('CartContext:', cartContext);
+            console.log('Produto:', cartProduct);
+
+            // Valida se o contexto está disponível e possui a função addToCart
+            if (cartContext && cartContext.addToCart) {
+                // Adiciona o produto ao carrinho com quantidade inicial de 1
+                cartContext.addToCart(cartProduct, 1);
+                console.log('Produto adicionado com sucesso');
+            } else {
+                // Log de erro se o contexto não está disponível
+                console.error('CartContext não disponível');
+            }
+        } catch (error) {
+            // Captura e exibe qualquer erro que ocorra durante a adição
+            console.error('Erro ao adicionar:', error);
+        }
+    };
+
+    // Renderiza o catálogo completo com produtos agrupados por categoria
     return (
         <section id="catalogo" className={styles.catalogo}>
+            {/* Cabeçalho do catálogo */}
             <div className={styles.header}>
                 <h1>Conheça o Nosso Catálogo</h1>
                 <p>Descubra os melhores produtos de tecnologia</p>
             </div>
 
+            {/* Renderiza cada categoria com seus produtos */}
             {Object.keys(productsByCategory).map(category => (
                 <div key={category} className={styles.categorySection}>
+                    {/* Título da categoria em português */}
                     <h2 className={styles.categoryTitle}>{categoryNames[category]}</h2>
                     <div className={styles.grid}>
+                        {/* Renderiza cada produto da categoria */}
                         {productsByCategory[category].map(product => (
                             <div key={product.id} className={styles.card}>
+                                {/* Container da imagem com clique para abrir modal */}
                                 <div className={styles.imageContainer} onClick={() => handleImageClick(product.image)}>
                                     <img src={product.image} alt={product.name} />
                                 </div>
                                 <div className={styles.content}>
+                                    {/* Informações do produto */}
                                     <h3>{product.name}</h3>
                                     <p className={styles.description}>{product.description}</p>
                                     <div className={styles.footer}>
+                                        {/* Preço formatado em BRL */}
                                         <span className={styles.price}>
-                                            {product.price.toLocaleString('pt-BR', {
-                                                style: 'currency',
-                                                currency: 'BRL'
-                                            })}
+                                             {product.price.toLocaleString('pt-BR', {
+                                                 style: 'currency',
+                                                 currency: 'BRL'
+                                             })}
                                         </span>
                                     </div>
-                                    <button className={styles.btn}>Adicionar ao Carrinho</button>
+                                    {/* Botão para adicionar o produto ao carrinho */}
+                                    <button className={styles.btn} onClick={() => handleAddToCart(product)}>Adicionar ao Carrinho</button>
                                 </div>
                             </div>
                         ))}
@@ -83,14 +130,17 @@ export default function Catalogo() {
                 </div>
             ))}
 
+            {/* Modal que exibe a imagem ampliada quando uma imagem é clicada */}
             {selectedImage && (
                 <div className={styles.modal} onClick={closeModal}>
                     <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
+                        {/* Botão para fechar o modal */}
                         <button className={styles.closeBtn} onClick={closeModal}>✕</button>
+                        {/* Imagem ampliada */}
                         <img src={selectedImage} alt="Imagem ampliada" />
                     </div>
                 </div>
             )}
         </section>
     )
-}
+    }

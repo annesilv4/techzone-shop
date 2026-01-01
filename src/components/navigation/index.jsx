@@ -105,12 +105,12 @@ export default function Navigation() {
             <NavItem onClick={() => setOpenDropdown(openDropdown === 'categorias' ? null : 'categorias')}>
                 <NavLink href="" onClick={(e) => e.preventDefault()}>
                     Categorias
-                    {/* Ícone que rotaciona quando o dropdown está aberto */}
-                    <ChevronIcon icon={faChevronDown} isOpen={openDropdown === 'categorias'} />
+                    {/* Ícone que rotaciona quando o dropdown está aberto/fechado */}
+                    <ChevronIcon icon={faChevronDown} $isOpen={openDropdown === 'categorias'} />
                 </NavLink>
-                
-                {/* Menu dropdown com as categorias de produtos */}
-                <DropdownMenu isOpen={openDropdown === 'categorias'}>
+
+                {/* Menu dropdown com as categorias de produtos disponíveis */}
+                <DropdownMenu $isOpen={openDropdown === 'categorias'}>
                     <DropdownItem href="categorias/smartphones">Smartphones</DropdownItem>
                     <DropdownItem href="categorias/notebooks">Notebooks</DropdownItem>
                     <DropdownItem href="categorias/gamer">Gamer</DropdownItem>
