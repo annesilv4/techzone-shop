@@ -6,6 +6,7 @@ import HomePage from './pages/home';
 import SearchPage from './pages/search';
 import RegisterPage from './pages/register';
 import CartPage from './pages/cart';
+import ProductPage from './pages/products';
 
 // Importação do contexto para gerenciar estado global de produtos
 import { ProductProvider } from './context/productContext';
@@ -36,6 +37,9 @@ export default function App() {
 
             {/* Rota para o carrinho de compras */}
             <Route path='/cart' element={<CartPage />} />
+
+            {/* Rota para o painel de produtos */}
+            <Route path='/products' element={<ProductPage />} />
           </Routes>
         </Router>
       </ProductProvider>

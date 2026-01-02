@@ -2,6 +2,7 @@
 import styled from '@emotion/styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { keyframes } from '@emotion/react';
+import { Link } from 'react-router-dom';
 
 // Função para evitar que props personalizadas (começando com $) sejam passadas ao DOM
 const shouldForwardProp = (prop) => !prop.startsWith('$');
@@ -39,7 +40,7 @@ export const Nav = styled.nav`
     `;
 
 // Componente estilizado para links de navegação
-export const NavLink = styled.a`
+export const NavLink = styled(Link)`
         color: #fff;
         text-decoration: none;
         font-size: 15px;
@@ -82,7 +83,7 @@ export const DropdownMenu = styled("div", { shouldForwardProp })`
     `;
 
 // Componente estilizado para itens dentro do dropdown
-export const DropdownItem = styled.a`
+export const DropdownItem = styled(Link)`
         display: block;
         color: #fff;
         text-decoration: none;

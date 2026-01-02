@@ -11,13 +11,13 @@ import { Nav, CepContainer, CepInput, ChevronIcon, NavLink, NavItem, DropdownMen
 export default function Navigation() {
     // Estado para armazenar o CEP digitado pelo usuário
     const [cep, setCep] = useState('');
-    
+
     // Estado para controlar qual dropdown está aberto (null = nenhum aberto)
     const [openDropdown, setOpenDropdown] = useState(null);
-    
+
     // Estado para armazenar os dados de endereço buscados via API
     const [address, setAddress] = useState(null);
-    
+
     // Estado para controlar o loading da busca de CEP
     const [loading, setLoading] = useState(false);
 
@@ -71,20 +71,20 @@ export default function Navigation() {
             {/* Seção de busca de CEP */}
             <CepContainer>
                 {/* Input para o usuário digitar o CEP com limite de 9 caracteres (XXXXX-XXX) */}
-                <CepInput 
-                    value={cep} 
-                    onChange={handleCepChange} 
-                    maxLength={9} 
-                    type="text" 
-                    placeholder="Digite seu CEP" 
+                <CepInput
+                    value={cep}
+                    onChange={handleCepChange}
+                    maxLength={9}
+                    type="text"
+                    placeholder="Digite seu CEP"
                 />
-                
+
                 {/* Indicador de loading enquanto busca o endereço */}
                 {loading && <span style={{ color: '#fff', fontSize: '12px' }}>Buscando...</span>}
-                
+
                 {/* Exibe o endereço encontrado quando a busca retorna resultado */}
                 {address && (
-                    <div 
+                    <div
                         style={{ color: '#fff', fontSize: '14px' }}
                         title={`Enviar para ${address.localidade}, ${address.uf}`}
                     >
@@ -94,8 +94,7 @@ export default function Navigation() {
             </CepContainer>
 
             {/* Link para navegação de Produtos */}
-            <NavLink href="products" onClick={(e) => {
-                e.preventDefault();
+            <NavLink to="/products" onClick={(e) => {
                 e.stopPropagation();
                 // Fecha qualquer dropdown aberto ao clicar em outro link
                 setOpenDropdown(null);
@@ -103,7 +102,7 @@ export default function Navigation() {
 
             {/* Item de navegação com dropdown de categorias */}
             <NavItem onClick={() => setOpenDropdown(openDropdown === 'categorias' ? null : 'categorias')}>
-                <NavLink href="" onClick={(e) => e.preventDefault()}>
+                <NavLink to="#" onClick={(e) => e.preventDefault()}>
                     Categorias
                     {/* Ícone que rotaciona quando o dropdown está aberto/fechado */}
                     <ChevronIcon icon={faChevronDown} $isOpen={openDropdown === 'categorias'} />
@@ -111,18 +110,17 @@ export default function Navigation() {
 
                 {/* Menu dropdown com as categorias de produtos disponíveis */}
                 <DropdownMenu $isOpen={openDropdown === 'categorias'}>
-                    <DropdownItem href="categorias/smartphones">Smartphones</DropdownItem>
-                    <DropdownItem href="categorias/notebooks">Notebooks</DropdownItem>
-                    <DropdownItem href="categorias/gamer">Gamer</DropdownItem>
-                    <DropdownItem href="categorias/acessorios">Acessórios</DropdownItem>
-                    <DropdownItem href="categorias/wearables">Wearables</DropdownItem>
-                    <DropdownItem href="categorias/perifericos">Periféricos</DropdownItem>
+                    <DropdownItem to="/categorias/smartphones">Smartphones</DropdownItem>
+                    <DropdownItem to="/categorias/notebooks">Notebooks</DropdownItem>
+                    <DropdownItem to="/categorias/gamer">Gamer</DropdownItem>
+                    <DropdownItem to="/categorias/acessorios">Acessórios</DropdownItem>
+                    <DropdownItem to="/categorias/wearables">Wearables</DropdownItem>
+                    <DropdownItem to="/categorias/perifericos">Periféricos</DropdownItem>
                 </DropdownMenu>
             </NavItem>
 
             {/* Link para navegação de Ofertas */}
-            <NavLink href="offers" onClick={(e) => {
-                e.preventDefault();
+            <NavLink to="/offers" onClick={(e) => {
                 e.stopPropagation();
                 // Fecha qualquer dropdown aberto ao clicar em outro link
                 setOpenDropdown(null);

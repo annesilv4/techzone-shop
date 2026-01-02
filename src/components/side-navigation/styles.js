@@ -75,7 +75,6 @@ export const NavItem = styled.div`
 
 // Componente estilizado para o menu dropdown (lista de categorias)
 export const DropdownMenu = styled("div", { shouldForwardProp })`
-    background-color: #f8f8f8;
     border-radius: 4px;
     display: ${props => props.$isOpen ? 'flex' : 'none'};
     flex-direction: column;
@@ -83,7 +82,6 @@ export const DropdownMenu = styled("div", { shouldForwardProp })`
     margin-top: 5px;
     width: 100%;
     padding: 8px 0;
-    border: 1px solid #e0e0e0;
     align-self: center;
 `;
 
