@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 export const ProductContainer = styled.div`
     padding: 60px 100px;
     background-color: #f5f5f5;
+    min-height: 83vh;
 `;
 
 export const TitleContainer = styled.div`

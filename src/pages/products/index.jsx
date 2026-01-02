@@ -1,9 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
-import { ProductContainer, TitleContainer, TitlePage, Description, GridProduct, CardProduct, CategorySection, ImageContainer, Content, CardDescription, CardFooter, Price, BtnCard, CardCategory } from './style';
+import { ProductContainer, TitleContainer, TitlePage, Description, GridProduct, CardProduct, CategorySection, ImageContainer, Content, CardDescription, CardFooter, Price, BtnCard, CardCategory, Modal, ModalContent, CloseBtn } from './style';
 import HeaderComponents from '../../components/header';
 import produtos from '../../api/products/produtos.json';
 import { CartContext } from '../../context/cartContext';
-import styles from '../../components/catalogo/styles.module.css';
 
 export default function ProductPage() {
     // Objeto que mapeia os IDs das categorias para seus nomes em português
@@ -129,14 +128,14 @@ export default function ProductPage() {
 
                 {/* Modal que exibe a imagem ampliada quando uma imagem é clicada */}
                 {selectedImage && (
-                    <div className={styles.modal} onClick={closeModal}>
-                        <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
+                    <Modal onClick={closeModal}>
+                        <ModalContent onClick={e => e.stopPropagation()}>
                             {/* Botão para fechar o modal */}
-                            <button className={styles.closeBtn} onClick={closeModal}>✕</button>
+                            <CloseBtn onClick={closeModal}>✕</CloseBtn>
                             {/* Imagem ampliada */}
                             <img src={selectedImage} alt="Imagem ampliada" />
-                        </div>
-                    </div>
+                        </ModalContent>
+                    </Modal>
                 )}
             </ProductContainer>
         </>

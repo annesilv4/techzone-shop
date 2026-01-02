@@ -102,7 +102,7 @@ export default function Navigation() {
 
             {/* Item de navegação com dropdown de categorias */}
             <NavItem onClick={() => setOpenDropdown(openDropdown === 'categorias' ? null : 'categorias')}>
-                <NavLink to="#" onClick={(e) => e.preventDefault()}>
+                <NavLink to="/categorias" onClick={(e) => e.preventDefault()}>
                     Categorias
                     {/* Ícone que rotaciona quando o dropdown está aberto/fechado */}
                     <ChevronIcon icon={faChevronDown} $isOpen={openDropdown === 'categorias'} />

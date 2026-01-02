@@ -7,6 +7,7 @@ import SearchPage from './pages/search';
 import RegisterPage from './pages/register';
 import CartPage from './pages/cart';
 import ProductPage from './pages/products';
+import { AcessoriosPage, GamerPage, NotebooksPage, PerifericosPage, SmartphonesPage, WearablesPage } from './pages/categorias';
 
 // Importação do contexto para gerenciar estado global de produtos
 import { ProductProvider } from './context/productContext';
@@ -26,21 +27,29 @@ export default function App() {
         <Router>
           {/* Routes define as rotas disponíveis */}
           <Routes>
-            {/* Rota para a página inicial - caminho raiz '/' */}
-            <Route path='/' element={<HomePage />} />
+             {/* Rota para a página inicial - caminho raiz '/' */}
+             <Route path='/' element={<HomePage />} />
 
-            {/* Rota para a página de busca */}
-            <Route path='/search' element={<SearchPage />} />
+             {/* Rota para a página de busca */}
+             <Route path='/search' element={<SearchPage />} />
 
-            {/* Rota para o usuário criar conta na mesma página */}
-            <Route path='/register' element={<RegisterPage />} />
+             {/* Rota para o usuário criar conta na mesma página */}
+             <Route path='/register' element={<RegisterPage />} />
 
-            {/* Rota para o carrinho de compras */}
-            <Route path='/cart' element={<CartPage />} />
+             {/* Rota para o carrinho de compras */}
+             <Route path='/cart' element={<CartPage />} />
 
-            {/* Rota para o painel de produtos */}
-            <Route path='/products' element={<ProductPage />} />
-          </Routes>
+             {/* Rota para o painel de produtos */}
+             <Route path='/products' element={<ProductPage />} />
+
+             {/* Rotas para páginas de categorias específicas */}
+             <Route path='/categorias/acessorios' element={<AcessoriosPage />} />
+             <Route path='/categorias/gamer' element={<GamerPage />} />
+             <Route path='/categorias/notebooks' element={<NotebooksPage />} />
+             <Route path='/categorias/perifericos' element={<PerifericosPage />} />
+             <Route path='/categorias/smartphones' element={<SmartphonesPage />} />
+             <Route path='/categorias/wearables' element={<WearablesPage />} />
+           </Routes>
         </Router>
       </ProductProvider>
     </CartProvider>
