@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import HeaderComponents from '../../components/header';
 import FooterComponents from '../../components/footer';
+import { createUser, loginUser } from '../../api/users/apiUsers';
+import { UserContext } from '../../context/userContext';
 import {
   PageWrapper,
   Container,
@@ -32,8 +34,12 @@ import {
   DemoParagraph
 } from './styles';
 
+// MODIFICADO: Página de autenticação que integra login e registro
+// Agora usa o UserContext para fazer login/registro
 export default function AuthPage() {
   const navigate = useNavigate();
+  // MODIFICADO: Acessa o contexto do usuário para chamar login após cadastro
+  const userContext = useContext(UserContext);
 
   // Login
   const [loginData, setLoginData] = useState({
@@ -136,7 +142,8 @@ export default function AuthPage() {
     setRememberMe(e.target.checked);
   };
 
-  // Handle Login Submit
+  // MODIFICADO: Função para fazer login
+  // Agora usa a API de usuários e o contexto para persistir dados
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
 
@@ -147,33 +154,28 @@ export default function AuthPage() {
     setLoginLoading(true);
 
     try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: loginData.email,
-          password: loginData.password,
-          rememberMe: rememberMe
-        })
-      });
+      // Chama a função loginUser da API que busca o usuário no banco de dados
+      const user = await loginUser(loginData.email, loginData.password);
 
-      if (response.ok) {
+      if (user) {
+        // MODIFICADO: Usa o método login do contexto para salvar dados do usuário
+        // Isto vai disparar o evento 'userUpdated' e sincronizar carrinho/histórico
+        userContext.login(user);
         alert('Login realizado com sucesso!');
         navigate('/');
       } else {
         setLoginErrors({ submit: 'Email ou senha inválidos' });
       }
     } catch (error) {
-      console.error('Erro:', error);
+      console.error('Erro ao fazer login:', error);
       setLoginErrors({ submit: 'Erro ao conectar ao servidor' });
     } finally {
       setLoginLoading(false);
     }
   };
 
-  // Handle Register Submit
+  // MODIFICADO: Função para fazer registro de novo usuário
+  // Cria o usuário na API e faz login automaticamente
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
 
@@ -184,27 +186,22 @@ export default function AuthPage() {
     setRegisterLoading(true);
 
     try {
-      const response = await fetch('/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: registerData.name,
-          email: registerData.email,
-          password: registerData.password
-        })
+      // MODIFICADO: Chama a função createUser da API para criar novo usuário
+      // A API retorna os dados do usuário criado, incluindo o _id
+      const newUser = await createUser({
+        name: registerData.name,
+        email: registerData.email,
+        password: registerData.password
       });
 
-      if (response.ok) {
-        alert('Cadastro realizado com sucesso!');
-        navigate('/');
-      } else {
-        setRegisterErrors({ submit: 'Erro ao cadastrar. Email já existe?' });
-      }
+      // MODIFICADO: Usa o método login do contexto para fazer login automático
+      // Isto salva o usuário no localStorage e dispara evento de sincronização
+      userContext.login(newUser);
+      alert('Cadastro realizado com sucesso!');
+      navigate('/');
     } catch (error) {
-      console.error('Erro:', error);
-      setRegisterErrors({ submit: 'Erro ao conectar ao servidor' });
+      console.error('Erro ao cadastrar:', error);
+      setRegisterErrors({ submit: 'Erro ao cadastrar. Email já existe?' });
     } finally {
       setRegisterLoading(false);
     }

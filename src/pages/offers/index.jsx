@@ -110,7 +110,7 @@ export default function OffersPage() {
                                     <CardFooter>
                                         {/* Categoria e preço */}
                                         <CardCategory>{product.category}</CardCategory>
-                                        <div style={{ textAlign: 'right' }}>
+                                        <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'end', gap: '5px' }}>
                                             <Price style={{ textDecoration: 'line-through', color: '#999', fontSize: '0.9rem', marginRight: '10px' }}>
                                                 {product.price.toLocaleString('pt-BR', {
                                                     style: 'currency',
