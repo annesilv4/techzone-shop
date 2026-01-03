@@ -18,16 +18,14 @@ export default function SideNavigation() {
     return (
         <Nav>
             {/* Link para a página de Produtos */}
-            <NavLink href="products" onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
+            <NavLink to="/products" onClick={() => {
                 // Fecha o dropdown quando outro link é clicado
                 setOpenDropdown(null);
             }}>Produtos</NavLink>
 
             {/* Item de navegação com dropdown de categorias */}
             <NavItem onClick={() => setOpenDropdown(openDropdown === 'categorias' ? null : 'categorias')}>
-                <NavLink href="" onClick={(e) => e.preventDefault()}>
+                <NavLink to="" onClick={(e) => e.preventDefault()}>
                     Categorias
                     {/* Ícone que rotaciona quando o dropdown está aberto/fechado */}
                     <ChevronIcon icon={faChevronDown} $isOpen={openDropdown === 'categorias'} />
@@ -36,19 +34,17 @@ export default function SideNavigation() {
                 {/* Menu dropdown com as categorias disponíveis */}
                 <DropdownMenu $isOpen={openDropdown === 'categorias'}>
                     {/* Lista de categorias de produtos */}
-                    <DropdownItem href="categorias/smartphones">Smartphones</DropdownItem>
-                    <DropdownItem href="categorias/notebooks">Notebooks</DropdownItem>
-                    <DropdownItem href="categorias/gamer">Gamer</DropdownItem>
-                    <DropdownItem href="categorias/acessorios">Acessórios</DropdownItem>
-                    <DropdownItem href="categorias/wearables">Wearables</DropdownItem>
-                    <DropdownItem href="categorias/perifericos">Periféricos</DropdownItem>
+                    <DropdownItem to="/categorias/smartphones">Smartphones</DropdownItem>
+                    <DropdownItem to="/categorias/notebooks">Notebooks</DropdownItem>
+                    <DropdownItem to="/categorias/gamer">Gamer</DropdownItem>
+                    <DropdownItem to="/categorias/acessorios">Acessórios</DropdownItem>
+                    <DropdownItem to="/categorias/wearables">Wearables</DropdownItem>
+                    <DropdownItem to="/categorias/perifericos">Periféricos</DropdownItem>
                 </DropdownMenu>
             </NavItem>
 
             {/* Link para a página de Ofertas/Promoções */}
-            <NavLink href="offers" onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
+            <NavLink to="/offers" onClick={() => {
                 // Fecha o dropdown quando outro link é clicado
                 setOpenDropdown(null);
             }}>

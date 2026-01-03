@@ -52,7 +52,7 @@ export default function OffersPage() {
     const handleAddToCart = (product) => {
         try {
             // MODIFICADO: Verifica se o produto está em oferta
-            const onOffer = isOnOffer(product.id);
+            const onOffer = offeredProductIds.includes(product.id);
             // MODIFICADO: Calcula o preço com desconto
             const finalPrice = getDiscountedPrice(product.price, product.id);
 

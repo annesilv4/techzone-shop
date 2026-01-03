@@ -1,5 +1,6 @@
 // Importações necessárias para componentes estilizados
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { keyframes } from '@emotion/react';
 
@@ -45,7 +46,7 @@ export const Nav = styled.nav`
 `;
 
 // Componente estilizado para links de navegação na sidebar
-export const NavLink = styled.a`
+export const NavLink = styled(Link)`
     color: #333;
     text-decoration: none;
     font-size: 15px;
@@ -86,7 +87,7 @@ export const DropdownMenu = styled("div", { shouldForwardProp })`
 `;
 
 // Componente estilizado para itens dentro do dropdown
-export const DropdownItem = styled.a`
+export const DropdownItem = styled(Link)`
     display: block;
     color: #555;
     text-decoration: none;
