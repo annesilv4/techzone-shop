@@ -1,14 +1,28 @@
+/**
+ * PÁGINA: Busca de Produtos
+ * 
+ * MODIFICAÇÕES:
+ * - Importado hook useOffers para sistema de descontos
+ * - Exibe badge de desconto em produtos em oferta
+ * - Mostra preço original riscado
+ * - Exibe preço com desconto
+ * - Envia preço com desconto ao carrinho
+ */
+
 import { useContext, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ProductContext } from '../../context/productContext';
 import { CartContext } from '../../context/cartContext';
 import HeaderComponents from '../../components/header';
 import Style from './search.module.css';
+import { useOffers } from '../../hooks/useOffers'; // MODIFICADO: Hook para sistema de descontos
 
 export default function SearchPage() {
     const [searchParams] = useSearchParams();
     const cartContext = useContext(CartContext);
     const { productList } = useContext(ProductContext);
+    // MODIFICADO: Hook de ofertas para calcular descontos nos resultados de busca
+    const { isOnOffer, getDiscount, getDiscountedPrice } = useOffers();
     const query = searchParams.get('q') || '';
 
     const results = useMemo(() => {
@@ -19,17 +33,31 @@ export default function SearchPage() {
         );
     }, [query, productList]);
 
+    /**
+     * MODIFICADO: Função para adicionar um produto ao carrinho
+     * 
+     * Agora envia o preço com desconto quando o produto estiver em oferta
+     * Inclui campos adicionais: precoOriginal e emOferta
+     */
     const handleAddToCart = (product) => {
         try {
+            // MODIFICADO: Verifica se o produto está em oferta
+            const onOffer = isOnOffer(product.id);
+            // MODIFICADO: Calcula o preço com desconto se aplicável
+            const finalPrice = onOffer ? getDiscountedPrice(product.price, product.id) : product.price;
+
+            // MODIFICADO: Inclui campos de desconto no objeto do carrinho
             // Mapeia os campos da API para o formato do carrinho
             // API: id, name, description, price, image
-            // Carrinho: id, nome, descricao, preco, imagem
+            // Carrinho: id, nome, descricao, preco, imagem, precoOriginal, emOferta
             const cartProduct = {
                 id: product.id,                      // ID do produto (mantém igual)
                 nome: product.name,                  // Nome do produto
                 descricao: product.description,      // Descrição do produto
-                preco: product.price,                // Preço do produto
-                imagem: product.image                // URL da imagem do produto
+                preco: finalPrice,                   // MODIFICADO: Preço com desconto (se houver)
+                imagem: product.image,               // URL da imagem do produto
+                precoOriginal: product.price,        // NOVO: Preço original para referência
+                emOferta: onOffer                    // NOVO: Flag indicando se está em oferta
             };
 
             // Logs para debug (verificar contexto e dados do produto)
@@ -59,25 +87,42 @@ export default function SearchPage() {
 
                 {results.length > 0 ? (
                     <div className={Style.resultsGrid}>
-                        {results.map(product => (
-                            <div key={product.id} className={Style.productCard}>
-                                <div className={Style.imageContainer}>
-                                    <img src={product.image} alt={product.name} />
+                        {results.map(product => {
+                            const onOffer = isOnOffer(product.id);
+                            const discount = onOffer ? getDiscount(product.id) : 0;
+                            const discountedPrice = getDiscountedPrice(product.price, product.id);
+
+                            return (
+                                <div key={product.id} className={Style.productCard}>
+                                    {onOffer && <div className={Style.discountBadge}>-{discount}%</div>}
+                                    <div className={Style.imageContainer}>
+                                        <img src={product.image} alt={product.name} />
+                                    </div>
+                                    <h3>{product.name}</h3>
+                                    <p className={Style.description}>{product.description}</p>
+                                    <div className={Style.footer}>
+                                        <p className={Style.category}>{product.category}</p>
+                                        <div className={Style.priceContainer}>
+                                            {onOffer && (
+                                                <p className={Style.originalPrice}>
+                                                    {product.price.toLocaleString('pt-BR', {
+                                                        style: 'currency',
+                                                        currency: 'BRL'
+                                                    })}
+                                                </p>
+                                            )}
+                                            <p className={Style.price}>
+                                                {discountedPrice.toLocaleString('pt-BR', {
+                                                    style: 'currency',
+                                                    currency: 'BRL'
+                                                })}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <button onClick={() => handleAddToCart(product)}>Adicionar ao Carrinho</button>
                                 </div>
-                                <h3>{product.name}</h3>
-                                <p className={Style.description}>{product.description}</p>
-                                <div className={Style.footer}>
-                                    <p className={Style.category}>{product.category}</p>
-                                    <p className={Style.price}>
-                                        {product.price.toLocaleString('pt-BR', {
-                                            style: 'currency',
-                                            currency: 'BRL'
-                                        })}
-                                    </p>
-                                </div>
-                                <button onClick={() => handleAddToCart(product)}>Adicionar ao Carrinho</button>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 ) : (
                     <p className={Style.noResults}>Nenhum produto encontrado para "{query}"</p>

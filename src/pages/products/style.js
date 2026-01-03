@@ -45,11 +45,25 @@ export const CardProduct = styled.div`
     display: flex; /* Ativa flexbox */
     flex-direction: column; /* Organiza verticalmente */
     height: 100%; /* Altura total do espaço */
+    position: relative;
 
     &:hover {
         transform: translateY(-5px); /* Move card 5px para cima */
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Aumenta sombra */
     }
+`;
+
+export const DiscountBadge = styled.div`
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #e74c3c;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    z-index: 10;
 `;
 
 export const ImageContainer = styled.div`

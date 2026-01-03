@@ -1,8 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
-import { ProductContainer, TitleContainer, TitlePage, Description, GridProduct, CardProduct, CategorySection, ImageContainer, Content, CardDescription, CardFooter, Price, BtnCard, CardCategory, Modal, ModalContent, CloseBtn } from './style';
+import { ProductContainer, TitleContainer, TitlePage, Description, GridProduct, CardProduct, CategorySection, ImageContainer, Content, CardDescription, CardFooter, Price, BtnCard, CardCategory, Modal, ModalContent, CloseBtn, DiscountBadge } from './style';
 import HeaderComponents from '../../components/header';
+import Navigation from '../../components/navigation';
 import produtos from '../../api/products/produtos.json';
 import { CartContext } from '../../context/cartContext';
+import { useOffers } from '../../hooks/useOffers';
 
 export default function ProductPage() {
     // Objeto que mapeia os IDs das categorias para seus nomes em português
@@ -21,6 +23,8 @@ export default function ProductPage() {
     const [selectedImage, setSelectedImage] = useState(null);
     // Contexto do carrinho
     const cartContext = useContext(CartContext);
+    // Hook de ofertas
+    const { isOnOffer, getDiscount, getDiscountedPrice } = useOffers();
 
     // Hook que executa quando o componente monta
     useEffect(() => {
@@ -54,6 +58,11 @@ export default function ProductPage() {
     // Transforma os dados do JSON da API para o formato esperado pelo contexto do carrinho
     const handleAddToCart = (product) => {
         try {
+            // Verifica se o produto está em oferta
+            const onOffer = isOnOffer(product.id);
+            // Calcula o preço com desconto se aplicável
+            const finalPrice = onOffer ? getDiscountedPrice(product.price, product.id) : product.price;
+
             // Mapeia os campos da API para o formato do carrinho
             // API: id, name, description, price, image
             // Carrinho: id, nome, descricao, preco, imagem
@@ -61,8 +70,10 @@ export default function ProductPage() {
                 id: product.id,                      // ID do produto (mantém igual)
                 nome: product.name,                  // Nome do produto
                 descricao: product.description,      // Descrição do produto
-                preco: product.price,                // Preço do produto
-                imagem: product.image                // URL da imagem do produto
+                preco: finalPrice,                   // Preço do produto (com desconto se houver)
+                imagem: product.image,               // URL da imagem do produto
+                precoOriginal: product.price,        // Preço original (para referência)
+                emOferta: onOffer                    // Flag indicando se está em oferta
             };
 
             // Logs para debug (verificar contexto e dados do produto)
@@ -87,6 +98,7 @@ export default function ProductPage() {
     return (
         <>
             <HeaderComponents />
+            <Navigation />
 
             <ProductContainer>
                 <TitleContainer>
@@ -97,31 +109,50 @@ export default function ProductPage() {
                 {Object.keys(productsByCategory).map(category => (
                     <CategorySection key={category}>
                         <GridProduct>
-                            {productsByCategory[category].map(product => (
-                                <CardProduct key={product.id}>
-                                    {/* Container da imagem com clique para abrir modal */}
-                                    <ImageContainer onClick={() => handleImageClick(product.image)}>
-                                        <img src={product.image} alt={product.name} />
-                                    </ImageContainer>
-                                    <Content>
-                                        {/* Informações do produto */}
-                                        <h3>{product.name}</h3>
-                                        <CardDescription>{product.description}</CardDescription>
-                                        <CardFooter>
-                                            {/* Preço formatado em BRL */}
-                                            <CardCategory>{product.category}</CardCategory>
-                                            <Price>
-                                                {product.price.toLocaleString('pt-BR', {
-                                                    style: 'currency',
-                                                    currency: 'BRL'
-                                                })}
-                                            </Price>
-                                        </CardFooter>
-                                        {/* Botão para adicionar o produto ao carrinho */}
-                                        <BtnCard onClick={() => handleAddToCart(product)}>Adicionar ao Carrinho</BtnCard>
-                                    </Content>
-                                </CardProduct>
-                            ))}
+                            {productsByCategory[category].map(product => {
+                                const onOffer = isOnOffer(product.id);
+                                const discount = onOffer ? getDiscount(product.id) : 0;
+                                const discountedPrice = getDiscountedPrice(product.price, product.id);
+
+                                return (
+                                    <CardProduct key={product.id}>
+                                        {/* Badge de desconto (se em oferta) */}
+                                        {onOffer && <DiscountBadge>-{discount}%</DiscountBadge>}
+
+                                        {/* Container da imagem com clique para abrir modal */}
+                                        <ImageContainer onClick={() => handleImageClick(product.image)}>
+                                            <img src={product.image} alt={product.name} />
+                                        </ImageContainer>
+                                        <Content>
+                                            {/* Informações do produto */}
+                                            <h3>{product.name}</h3>
+                                            <CardDescription>{product.description}</CardDescription>
+                                            <CardFooter>
+                                                {/* Preço formatado em BRL */}
+                                                <CardCategory>{product.category}</CardCategory>
+                                                <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'end', gap: '5px' }}>
+                                                    {onOffer && (
+                                                        <Price style={{ textDecoration: 'line-through', color: '#999', fontSize: '0.9rem', marginRight: '10px' }}>
+                                                            {product.price.toLocaleString('pt-BR', {
+                                                                style: 'currency',
+                                                                currency: 'BRL'
+                                                            })}
+                                                        </Price>
+                                                    )}
+                                                    <Price>
+                                                        {discountedPrice.toLocaleString('pt-BR', {
+                                                            style: 'currency',
+                                                            currency: 'BRL'
+                                                        })}
+                                                    </Price>
+                                                </div>
+                                            </CardFooter>
+                                            {/* Botão para adicionar o produto ao carrinho */}
+                                            <BtnCard onClick={() => handleAddToCart(product)}>Adicionar ao Carrinho</BtnCard>
+                                        </Content>
+                                    </CardProduct>
+                                );
+                            })}
                         </GridProduct>
                     </CategorySection>
                 ))}

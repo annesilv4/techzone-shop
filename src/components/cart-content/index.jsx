@@ -79,10 +79,19 @@ export default function CartContent() {
                         <ItemImage src={item.imagem} alt={item.nome} />
 
                         <ItemDetails>
-                            {/* Informações do produto: nome, descrição e preço */}
-                            <ItemName>{item.nome}</ItemName>
-                            <ItemDescription>{item.descricao}</ItemDescription>
-                            <ItemPrice>{formatPrice(item.preco)}</ItemPrice>
+                             {/* Informações do produto: nome, descrição e preço */}
+                             <ItemName>{item.nome}</ItemName>
+                             <ItemDescription>{item.descricao}</ItemDescription>
+                             {/* Mostra preço original riscado se está em oferta */}
+                             {item.emOferta && (
+                                 <ItemPrice style={{ textDecoration: 'line-through', color: '#999', fontSize: '0.9rem', marginBottom: '5px' }}>
+                                     {formatPrice(item.precoOriginal)}
+                                 </ItemPrice>
+                             )}
+                             <ItemPrice style={{ color: item.emOferta ? '#27ae60' : '#667eea' }}>
+                                 {formatPrice(item.preco)}
+                                 {item.emOferta && <span style={{ marginLeft: '5px', fontSize: '0.8rem' }}>(com desconto)</span>}
+                             </ItemPrice>
 
                             {/* Controles para ajustar quantidade do produto */}
                             <QuantityControl>

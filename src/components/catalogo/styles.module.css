@@ -50,7 +50,10 @@
   margin: 0 auto; /* Centraliza o grid */
 }
 
-/* Card individual de produto */
+/**
+ * MODIFICADO: Card individual de produto
+ * Adicionado position: relative para badge de desconto
+ */
 .card {
   background-color: white; /* Fundo branco */
   border-radius: 8px; /* Cantos arredondados */
@@ -60,12 +63,31 @@
   display: flex; /* Ativa flexbox */
   flex-direction: column; /* Organiza verticalmente */
   height: 100%; /* Altura total do espaço */
+  position: relative; /* MODIFICADO: Necessário para badge de desconto absoluto */
 }
 
 /* Efeito ao passar mouse sobre o card */
 .card:hover {
   transform: translateY(-5px); /* Move card 5px para cima */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Aumenta sombra */
+}
+
+/**
+ * NOVO: Badge de desconto
+ * Exibido no canto superior direito dos cards
+ * Mostra o percentual de desconto (ex: -15%)
+ */
+.discountBadge {
+  position: absolute; /* NOVO: Posicionado absolutamente no card */
+  top: 10px; /* NOVO: 10px do topo */
+  right: 10px; /* NOVO: 10px da direita */
+  background-color: #e74c3c; /* NOVO: Cor vermelha para destacar desconto */
+  color: white; /* NOVO: Texto branco */
+  padding: 8px 12px; /* NOVO: Espaçamento interno */
+  border-radius: 5px; /* NOVO: Cantos levemente arredondados */
+  font-weight: bold; /* NOVO: Texto em negrito */
+  font-size: 0.9rem; /* NOVO: Tamanho compacto */
+  z-index: 10; /* NOVO: Fica acima de outros elementos */
 }
 
 /* Container da imagem do produto */
@@ -194,11 +216,50 @@
   border-top: 1px solid #eee; /* Linha divisória leve */
 }
 
-/* Preço do produto */
+/**
+ * NOVO: Container de preços
+ * Agrupa preço original (riscado) e preço com desconto
+ */
+.priceContainer {
+  display: flex; /* NOVO: Ativa flexbox */
+  flex-direction: column; /* NOVO: Organiza verticalmente */
+  align-items: flex-end; /* NOVO: Alinha à direita */
+}
+
+/**
+ * NOVO: Preço original riscado
+ * Exibido apenas quando o produto está em oferta
+ */
+.originalPrice {
+  font-size: 0.9rem; /* NOVO: Tamanho pequeno */
+  color: #999; /* NOVO: Cor cinza */
+  text-decoration: line-through; /* NOVO: Riscado */
+  margin-right: 10px; /* NOVO: Espaço à direita */
+}
+
+/**
+ * MODIFICADO: Preço do produto
+ * Agora pode exibir preço com ou sem desconto
+ */
 .price {
   font-size: 1.3rem; /* Tamanho grande */
   color: #667eea; /* Cor roxo */
   font-weight: bold; /* Texto em negrito */
+}
+
+/* Preço original (riscado quando em oferta) */
+.originalPrice {
+  font-size: 0.9rem; /* Tamanho pequeno */
+  color: #999; /* Cor cinza */
+  text-decoration: line-through; /* Riscado */
+  margin-right: 10px;
+}
+
+/* Container de preços (para mostrar original e com desconto) */
+.priceContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 /* Botão "Adicionar ao Carrinho" */

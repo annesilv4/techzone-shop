@@ -1,3 +1,14 @@
+/**
+ * COMPONENTE: Catálogo (Home Page)
+ * 
+ * MODIFICAÇÕES:
+ * - Importado hook useOffers para sistema de descontos
+ * - Exibe badge de desconto em produtos em oferta
+ * - Mostra preço original riscado
+ * - Exibe preço com desconto
+ * - Envia preço com desconto ao carrinho
+ */
+
 // Importa hooks do React para gerenciar estado
 import { useEffect, useState, useContext } from 'react';
 import styles from './styles.module.css';
@@ -5,6 +16,8 @@ import styles from './styles.module.css';
 import produtos from '../../api/products/produtos.json';
 // Importa o contexto do carrinho
 import { CartContext } from '../../context/cartContext';
+// MODIFICADO: Importado hook useOffers para sistema de descontos
+import { useOffers } from '../../hooks/useOffers';
 
 // Objeto que mapeia os IDs das categorias para seus nomes em português
 const categoryNames = {
@@ -23,6 +36,8 @@ export default function Catalogo() {
     const [selectedImage, setSelectedImage] = useState(null);
     // Contexto do carrinho
     const cartContext = useContext(CartContext);
+    // MODIFICADO: Hook de ofertas com funções para calcular descontos
+    const { isOnOffer, getDiscount, getDiscountedPrice } = useOffers();
 
     // Hook que executa quando o componente monta
     useEffect(() => {
@@ -52,19 +67,31 @@ export default function Catalogo() {
         setSelectedImage(null);
     };
 
-    // Função para adicionar um produto ao carrinho
-    // Transforma os dados do JSON da API para o formato esperado pelo contexto do carrinho
+    /**
+     * MODIFICADO: Função para adicionar um produto ao carrinho
+     * 
+     * Agora envia o preço com desconto quando o produto estiver em oferta
+     * Inclui campos adicionais: precoOriginal e emOferta
+     */
     const handleAddToCart = (product) => {
         try {
+            // MODIFICADO: Verifica se o produto está em oferta usando hook useOffers
+            const onOffer = isOnOffer(product.id);
+            // MODIFICADO: Calcula o preço com desconto se aplicável
+            const finalPrice = onOffer ? getDiscountedPrice(product.price, product.id) : product.price;
+
+            // MODIFICADO: Agora inclui campos de desconto
             // Mapeia os campos da API para o formato do carrinho
             // API: id, name, description, price, image
-            // Carrinho: id, nome, descricao, preco, imagem
+            // Carrinho: id, nome, descricao, preco, imagem, precoOriginal, emOferta
             const cartProduct = {
                 id: product.id,                      // ID do produto (mantém igual)
                 nome: product.name,                  // Nome do produto
                 descricao: product.description,      // Descrição do produto
-                preco: product.price,                // Preço do produto
-                imagem: product.image                // URL da imagem do produto
+                preco: finalPrice,                   // MODIFICADO: Preço com desconto (se houver)
+                imagem: product.image,               // URL da imagem do produto
+                precoOriginal: product.price,        // NOVO: Preço original para referência
+                emOferta: onOffer                    // NOVO: Flag indicando se está em oferta
             };
 
             // Logs para debug (verificar contexto e dados do produto)
@@ -102,30 +129,49 @@ export default function Catalogo() {
                     <h2 className={styles.categoryTitle}>{categoryNames[category]}</h2>
                     <div className={styles.grid}>
                         {/* Renderiza cada produto da categoria */}
-                        {productsByCategory[category].map(product => (
-                            <div key={product.id} className={styles.card}>
-                                {/* Container da imagem com clique para abrir modal */}
-                                <div className={styles.imageContainer} onClick={() => handleImageClick(product.image)}>
-                                    <img src={product.image} alt={product.name} />
-                                </div>
-                                <div className={styles.content}>
-                                    {/* Informações do produto */}
-                                    <h3>{product.name}</h3>
-                                    <p className={styles.description}>{product.description}</p>
-                                    <div className={styles.footer}>
-                                        {/* Preço formatado em BRL */}
-                                        <span className={styles.price}>
-                                             {product.price.toLocaleString('pt-BR', {
-                                                 style: 'currency',
-                                                 currency: 'BRL'
-                                             })}
-                                        </span>
-                                    </div>
-                                    {/* Botão para adicionar o produto ao carrinho */}
-                                    <button className={styles.btn} onClick={() => handleAddToCart(product)}>Adicionar ao Carrinho</button>
-                                </div>
-                            </div>
-                        ))}
+                         {productsByCategory[category].map(product => {
+                             const onOffer = isOnOffer(product.id);
+                             const discount = onOffer ? getDiscount(product.id) : 0;
+                             const discountedPrice = getDiscountedPrice(product.price, product.id);
+
+                             return (
+                                 <div key={product.id} className={styles.card}>
+                                     {/* Badge de desconto */}
+                                     {onOffer && <div className={styles.discountBadge}>-{discount}%</div>}
+
+                                     {/* Container da imagem com clique para abrir modal */}
+                                     <div className={styles.imageContainer} onClick={() => handleImageClick(product.image)}>
+                                         <img src={product.image} alt={product.name} />
+                                     </div>
+                                     <div className={styles.content}>
+                                         {/* Informações do produto */}
+                                         <h3>{product.name}</h3>
+                                         <p className={styles.description}>{product.description}</p>
+                                         <div className={styles.footer}>
+                                             {/* Preço formatado em BRL */}
+                                             <div className={styles.priceContainer}>
+                                                 {onOffer && (
+                                                     <span className={styles.originalPrice}>
+                                                         {product.price.toLocaleString('pt-BR', {
+                                                             style: 'currency',
+                                                             currency: 'BRL'
+                                                         })}
+                                                     </span>
+                                                 )}
+                                                 <span className={styles.price}>
+                                                     {discountedPrice.toLocaleString('pt-BR', {
+                                                         style: 'currency',
+                                                         currency: 'BRL'
+                                                     })}
+                                                 </span>
+                                             </div>
+                                         </div>
+                                         {/* Botão para adicionar o produto ao carrinho */}
+                                         <button className={styles.btn} onClick={() => handleAddToCart(product)}>Adicionar ao Carrinho</button>
+                                     </div>
+                                 </div>
+                             );
+                         })}
                     </div>
                 </div>
             ))}

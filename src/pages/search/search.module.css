@@ -23,7 +23,10 @@
   justify-content: stretch; /* Estende itens horizontalmente */
 }
 
-/* Estilo do card de produto */
+/**
+ * MODIFICADO: Estilo do card de produto
+ * Adicionado position: relative para badge de desconto
+ */
 .productCard {
   border: 1px solid #e0e0e0; /* Borda cinza clara */
   border-radius: 8px; /* Cantos arredondados */
@@ -34,6 +37,25 @@
   display: flex; /* Ativa flexbox */
   flex-direction: column; /* Organiza conteúdo em coluna */
   height: 100%; /* Ocupa toda a altura disponível */
+  position: relative; /* MODIFICADO: Necessário para badge de desconto absoluto */
+}
+
+/**
+ * NOVO: Badge de desconto
+ * Exibido no canto superior direito dos cards
+ * Mostra o percentual de desconto (ex: -15%)
+ */
+.discountBadge {
+  position: absolute; /* NOVO: Posicionado absolutamente no card */
+  top: 10px; /* NOVO: 10px do topo */
+  right: 10px; /* NOVO: 10px da direita */
+  background-color: #e74c3c; /* NOVO: Cor vermelha para destacar */
+  color: white; /* NOVO: Texto branco */
+  padding: 8px 12px; /* NOVO: Espaçamento interno */
+  border-radius: 5px; /* NOVO: Cantos levemente arredondados */
+  font-weight: bold; /* NOVO: Texto em negrito */
+  font-size: 0.9rem; /* NOVO: Tamanho compacto */
+  z-index: 10; /* NOVO: Fica acima de outros elementos */
 }
 
 /* Efeito ao passar o mouse sobre o card */
@@ -97,7 +119,46 @@
   display: flex; /* Ativa flexbox */
 }
 
-/* Estilo do preço */
+/* Container de preços (para mostrar original e com desconto) */
+.priceContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Preço original (riscado quando em oferta) */
+.originalPrice {
+  font-size: 0.9rem; /* Tamanho pequeno */
+  color: #999; /* Cor cinza */
+  text-decoration: line-through; /* Riscado */
+  margin: 0 0 5px 0;
+}
+
+/**
+ * NOVO: Container de preços
+ * Agrupa preço original (riscado) e preço com desconto
+ */
+.priceContainer {
+  display: flex; /* NOVO: Ativa flexbox */
+  flex-direction: column; /* NOVO: Organiza verticalmente */
+  align-items: center; /* NOVO: Alinha ao centro */
+}
+
+/**
+ * NOVO: Preço original riscado
+ * Exibido apenas quando o produto está em oferta
+ */
+.originalPrice {
+  font-size: 0.9rem; /* NOVO: Tamanho pequeno */
+  color: #999; /* NOVO: Cor cinza */
+  text-decoration: line-through; /* NOVO: Riscado */
+  margin: 0 0 5px 0; /* NOVO: Espaço abaixo */
+}
+
+/**
+ * MODIFICADO: Estilo do preço
+ * Agora exibe preço com ou sem desconto
+ */
 .price {
   font-size: 18px; /* Tamanho destacado */
   font-weight: bold; /* Texto em negrito */
