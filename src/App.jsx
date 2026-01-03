@@ -16,14 +16,18 @@ import { ProductProvider } from './context/productContext';
 // Importação do contexto para gerenciar estado global do carrinho
 import { CartProvider } from './context/cartContext';
 
+// Importação do contexto para gerenciar estado global do usuário
+import { UserProvider } from './context/userContext';
+
 // Importação do arquivo global de estilos CSS
 import './global.css';
 
 // Componente raiz da aplicação
 export default function App() {
   return (
-    <CartProvider>
-      <ProductProvider>
+    <UserProvider>
+      <CartProvider>
+        <ProductProvider>
         {/* Router configura o sistema de roteamento da aplicação */}
         <Router>
           {/* Routes define as rotas disponíveis */}
@@ -55,7 +59,8 @@ export default function App() {
             <Route path='/offers' element={<OffersPage />} />
           </Routes>
         </Router>
-      </ProductProvider>
-    </CartProvider>
-  )
-}
+        </ProductProvider>
+        </CartProvider>
+        </UserProvider>
+        )
+        }
