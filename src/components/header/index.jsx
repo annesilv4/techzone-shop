@@ -11,11 +11,15 @@ import { Header, Logo, Search, SearchIcon, User, Cart, CartBadge } from './style
 // Importações do React Router
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 // Importações de hooks do React
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useRef } from 'react';
 // Importação do hook customizado para histórico de buscas
 import { useSearchHistory } from '../../hooks/useSearchHistory';
 // Importação do contexto do carrinho
 import { CartContext } from '../../context/cartContext';
+// Importação do contexto do usuário
+import { UserContext } from '../../context/userContext';
+// Importação do modal de configurações de usuário
+import UserSettingsModal from '../user-settings-modal';
 
 // Componente de cabeçalho com logo, busca, usuário e carrinho
 export default function HeaderComponents() {
@@ -33,6 +37,12 @@ export default function HeaderComponents() {
     const cartContext = useContext(CartContext);
     // Quantidade de itens no carrinho (número de produtos, não o total)
     const cartCount = cartContext?.cart?.length || 0;
+    // Contexto do usuário
+    const userContext = useContext(UserContext);
+    // Estado para controlar visibilidade do modal de configurações
+    const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
+    // Referência para o elemento do usuário
+    const userElementRef = useRef(null);
 
     // Hook que sincroniza o valor de busca com os parâmetros da URL
     // Quando a URL muda, atualiza o campo de busca
@@ -44,6 +54,8 @@ export default function HeaderComponents() {
             setSearchValue(query);
         }
     }, [searchParams]);
+
+
 
     // Função chamada quando o usuário pressiona Enter no campo de busca
     const handleSearch = (e) => {
@@ -137,10 +149,24 @@ export default function HeaderComponents() {
             </div>
 
             {/* Seção de usuário com login e cadastro */}
-            <User className='header__user'>
-                <FontAwesomeIcon icon={faUser} />
-                <p><a href="register">Entre</a> ou <a href="register">Se cadastre</a></p>
-            </User>
+            <div style={{ position: 'relative' }} ref={userElementRef}>
+                <User className='header__user' onClick={() => userContext?.user && setIsSettingsModalOpen(true)} style={{ cursor: userContext?.user ? 'pointer' : 'default' }}>
+                    <FontAwesomeIcon icon={faUser} />
+                    {userContext?.user ? (
+                        <p>Bem-vindo, {userContext.user.name.split(' ')[0]}</p>
+                    ) : (
+                        <p><a href="register">Entre</a> ou <a href="register">Se cadastre</a></p>
+                    )}
+                </User>
+
+                {/* Modal de configurações do usuário */}
+                {isSettingsModalOpen && (
+                    <UserSettingsModal 
+                        isOpen={isSettingsModalOpen}
+                        onClose={() => setIsSettingsModalOpen(false)}
+                    />
+                )}
+            </div>
 
             {/* Ícone do carrinho com badge mostrando quantidade de produtos */}
             <Cart as={Link} className='header__cart' to='/cart'>
