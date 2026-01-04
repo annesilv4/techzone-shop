@@ -192,3 +192,125 @@
   color: #999; /* Cor cinza clara */
   margin: 60px 0; /* Espaço acima e abaixo */
 }
+
+/* Media Query para Tablets (768px até 1024px) */
+@media (max-width: 1024px) {
+  .searchContainer {
+    margin: 30px 50px; /* Reduz margem lateral */
+  }
+
+  .searchContainer h1 {
+    font-size: 24px; /* Reduz tamanho do título */
+    margin-bottom: 25px;
+  }
+
+  .resultsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Colunas menores */
+    gap: 15px; /* Reduz espaço entre itens */
+  }
+
+  .imageContainer {
+    height: 180px; /* Reduz altura da imagem */
+  }
+
+  .productCard h3 {
+    font-size: 14px; /* Reduz tamanho do título */
+  }
+
+  .price {
+    font-size: 16px; /* Reduz tamanho do preço */
+  }
+}
+
+/* Media Query para Mobile pequeno (até 480px) */
+@media (max-width: 480px) {
+  .searchContainer {
+    margin: 20px 15px; /* Margem mínima */
+  }
+
+  .searchContainer h1 {
+    font-size: 20px; /* Tamanho bem reduzido */
+    margin-bottom: 15px;
+  }
+
+  .resultsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Colunas ainda menores */
+    gap: 10px; /* Espaço reduzido */
+  }
+
+  .imageContainer {
+    height: 150px; /* Imagem menor */
+  }
+
+  .productCard {
+    padding: 10px; /* Padding reduzido */
+  }
+
+  .productCard h3 {
+    font-size: 12px; /* Título reduzido */
+    margin: 8px 0;
+  }
+
+  .description {
+    font-size: 0.75rem; /* Texto menor */
+    margin-bottom: 10px;
+  }
+
+  .price {
+    font-size: 14px; /* Preço menor */
+  }
+
+  .discountBadge {
+    font-size: 0.75rem; /* Badge menor */
+    padding: 5px 8px;
+  }
+
+  .category {
+    font-size: 10px; /* Categoria menor */
+    padding: 5px;
+  }
+
+  .productCard button {
+    padding: 8px; /* Botão com padding menor */
+    font-size: 12px;
+  }
+
+  .noResults {
+    font-size: 16px; /* Mensagem menor */
+  }
+}
+
+/* Media Query para Mobile médio (481px até 768px) */
+@media (max-width: 768px) and (min-width: 481px) {
+  .searchContainer {
+    margin: 25px 30px; /* Margem média */
+  }
+
+  .searchContainer h1 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .resultsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); /* Colunas médias */
+    gap: 12px;
+  }
+
+  .imageContainer {
+    height: 165px;
+  }
+
+  .productCard h3 {
+    font-size: 13px;
+    margin: 8px 0;
+  }
+
+  .price {
+    font-size: 15px;
+  }
+
+  .productCard button {
+    padding: 8px;
+    font-size: 13px;
+  }
+}

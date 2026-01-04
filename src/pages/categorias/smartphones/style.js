@@ -1,9 +1,21 @@
 import styled from "@emotion/styled";
+import {
+    responsiveProductContainer,
+    responsiveTitlePage,
+    responsiveGridProduct,
+    responsiveImageContainer,
+    responsiveContent,
+    responsivePrice,
+    responsiveBtnCard,
+    responsiveDiscountBadge,
+    responsiveCloseBtn,
+} from "../mediaQueries";
 
 export const ProductContainer = styled.div`
     padding: 60px 100px;
     background-color: #f5f5f5;
     min-height: 83vh;
+    ${responsiveProductContainer}
 `;
 
 export const TitleContainer = styled.div`
@@ -15,6 +27,7 @@ export const TitlePage = styled.h1`
     font-size: 2.5rem; /* Tamanho grande */
     color: #333; /* Cor escura */
     margin-bottom: 10px; /* Espaçamento abaixo */
+    ${responsiveTitlePage}
 `;
 
 export const Description = styled.p`
@@ -35,6 +48,7 @@ export const GridProduct = styled.div`
     gap: 30px; /* Espaçamento entre itens */
     max-width: 1200px; /* Largura máxima do grid */
     margin: 0 auto; /* Centraliza o grid */
+    ${responsiveGridProduct}
 `;
 
 export const CardProduct = styled.div`
@@ -65,6 +79,7 @@ export const DiscountBadge = styled.div`
     font-weight: bold;
     font-size: 0.9rem;
     z-index: 10;
+    ${responsiveDiscountBadge}
 `;
 
 export const ImageContainer = styled.div`
@@ -81,6 +96,7 @@ export const ImageContainer = styled.div`
         transition: transform 0.3s ease; /* Animação suave */
         transform: scale(1.05); /* Amplia 5% */
     }
+    ${responsiveImageContainer}
 `;
 
 export const Content = styled.div`
@@ -96,6 +112,7 @@ export const Content = styled.div`
         line-height: 1.4; /* Altura de linha */
         min-height: 2.8em; /* Altura mínima para 2 linhas */
     }
+    ${responsiveContent}
 `;
 
 export const CardDescription = styled.p`
@@ -119,6 +136,7 @@ export const Price = styled.span`
     font-size: 1.3rem; /* Tamanho grande */
     color: #667eea; /* Cor roxo */
     font-weight: bold; /* Texto em negrito */
+    ${responsivePrice}
 `;
 
 export const BtnCard = styled.button`
@@ -136,6 +154,7 @@ export const BtnCard = styled.button`
     &:hover {
         background-color: #764ba2; /* Roxo mais escuro */
     }
+    ${responsiveBtnCard}
 `;
 
 export const CardCategory = styled.p`
@@ -198,4 +217,5 @@ export const CloseBtn = styled.button`
     &:hover {
         background-color: white; /* Fica branco sólido */
     }
+    ${responsiveCloseBtn}
 `;

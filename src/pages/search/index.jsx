@@ -14,6 +14,7 @@ import { useSearchParams } from 'react-router-dom';
 import { ProductContext } from '../../context/productContext';
 import { CartContext } from '../../context/cartContext';
 import HeaderComponents from '../../components/header';
+import Navigation from '../../components/navigation';
 import Style from './search.module.css';
 import { useOffers } from '../../hooks/useOffers'; // MODIFICADO: Hook para sistema de descontos
 
@@ -82,6 +83,7 @@ export default function SearchPage() {
     return (
         <>
             <HeaderComponents />
+            <Navigation />
             <div className={Style.searchContainer}>
                 <h1>Resultados para "{query}"</h1>
 

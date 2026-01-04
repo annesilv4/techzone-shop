@@ -281,40 +281,293 @@
   background-color: #764ba2; /* Roxo mais escuro */
 }
 
-/* Media query para tablets e dispositivos pequenos */
-@media (max-width: 768px) {
+/* ===== Media Queries para Responsividade ===== */
+
+/* Tablet (768px a 1024px) */
+@media (max-width: 1024px) {
   .catalogo {
-    padding: 40px 15px; /* Reduz espaçamento */
+    padding: 40px 50px;
+  }
+
+  .categorySection {
+    margin-bottom: 60px;
+  }
+
+  .categoryTitle {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
   }
 
   .header h1 {
-    font-size: 2rem; /* Reduz tamanho do título */
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+  }
+
+  .header p {
+    font-size: 1rem;
+  }
+
+  .header {
+    margin-bottom: 40px;
   }
 
   .grid {
-    grid-template-columns: repeat(
-      auto-fill,
-      minmax(200px, 1fr)
-    ); /* Colunas menores */
-    gap: 20px; /* Reduz espaçamento entre itens */
-  }
-
-  .content {
-    padding: 15px; /* Reduz espaçamento interno */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
   }
 
   .imageContainer {
-    height: 150px; /* Reduz altura da imagem */
+    height: 180px;
+  }
+
+  .content {
+    padding: 16px;
+  }
+
+  .content h3 {
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+  }
+
+  .description {
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+  }
+
+  .price {
+    font-size: 1.2rem;
+  }
+
+  .btn {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+
+  .discountBadge {
+    padding: 6px 10px;
+    font-size: 0.85rem;
   }
 }
 
-/* Media query para celulares */
-@media (max-width: 480px) {
-  .grid {
-    grid-template-columns: 1fr; /* Uma coluna apenas */
+/* Mobile (até 767px) */
+@media (max-width: 767px) {
+  .catalogo {
+    padding: 30px 15px;
+  }
+
+  .categorySection {
+    margin-bottom: 50px;
+  }
+
+  .categoryTitle {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 30px;
   }
 
   .header h1 {
-    font-size: 1.5rem; /* Reduz muito o título */
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+  }
+
+  .header p {
+    font-size: 0.9rem;
+    color: #999;
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+    max-width: 100%;
+  }
+
+  .card {
+    border-radius: 6px;
+  }
+
+  .imageContainer {
+    height: 140px;
+  }
+
+  .imageContainer img {
+    object-fit: cover;
+  }
+
+  .content {
+    padding: 12px;
+  }
+
+  .content h3 {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    min-height: auto;
+  }
+
+  .description {
+    font-size: 0.75rem;
+    margin-bottom: 10px;
+  }
+
+  .footer {
+    margin-bottom: 12px;
+    padding-top: 12px;
+  }
+
+  .price {
+    font-size: 1.1rem;
+  }
+
+  .originalPrice {
+    font-size: 0.8rem;
+    margin-right: 8px;
+  }
+
+  .btn {
+    padding: 9px 12px;
+    font-size: 0.85rem;
+    border-radius: 4px;
+  }
+
+  .discountBadge {
+    padding: 5px 8px;
+    font-size: 0.75rem;
+    top: 8px;
+    right: 8px;
+    border-radius: 3px;
+  }
+
+  .closeBtn {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+    top: 10px;
+    right: 10px;
+  }
+
+  .modalContent {
+    max-width: 95vw;
+    max-height: 85vh;
+  }
+
+  .modalContent img {
+    max-height: 80vh;
+  }
+}
+
+/* Mobile pequeno (até 480px) */
+@media (max-width: 480px) {
+  .catalogo {
+    padding: 20px 10px;
+  }
+
+  .categorySection {
+    margin-bottom: 40px;
+  }
+
+  .categoryTitle {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+  }
+
+  .header {
+    margin-bottom: 25px;
+  }
+
+  .header h1 {
+    font-size: 1.5rem;
+    margin-bottom: 6px;
+  }
+
+  .header p {
+    font-size: 0.85rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .card {
+    border-radius: 4px;
+  }
+
+  .imageContainer {
+    height: 120px;
+  }
+
+  .content {
+    padding: 10px;
+  }
+
+  .content h3 {
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+  }
+
+  .description {
+    font-size: 0.7rem;
+    margin-bottom: 8px;
+  }
+
+  .footer {
+    margin-bottom: 10px;
+    padding-top: 10px;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .price {
+    font-size: 1rem;
+  }
+
+  .originalPrice {
+    font-size: 0.75rem;
+    margin-right: 6px;
+  }
+
+  .priceContainer {
+    width: 100%;
+  }
+
+  .btn {
+    padding: 8px 10px;
+    font-size: 0.8rem;
+    border-radius: 3px;
+    margin-top: 8px;
+  }
+
+  .discountBadge {
+    padding: 4px 6px;
+    font-size: 0.7rem;
+    top: 6px;
+    right: 6px;
+  }
+
+  .closeBtn {
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+    top: 8px;
+    right: 8px;
+  }
+
+  .modal {
+    padding: 10px;
+  }
+
+  .modalContent {
+    max-width: 98vw;
+    max-height: 80vh;
+    border-radius: 6px;
+  }
+
+  .modalContent img {
+    max-height: 75vh;
   }
 }

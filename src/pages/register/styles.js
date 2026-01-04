@@ -13,6 +13,14 @@ export const Container = styled.div`
   justify-content: center;
   flex: 1;
   padding: 80px 100px;
+
+  @media (max-width: 768px) {
+    padding: 60px 50px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 40px 20px;
+  }
 `;
 
 export const Wrapper = styled.div`

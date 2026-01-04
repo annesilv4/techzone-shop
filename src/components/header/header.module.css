@@ -58,12 +58,106 @@
 
 /* Mensagem quando não há histórico */
 .emptyHistory {
-  padding: 20px 15px;
-  text-align: center;
-  color: #999;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px; /* Espaço entre ícone e texto */
+   padding: 20px 15px;
+   text-align: center;
+   color: #999;
+   font-size: 14px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 8px; /* Espaço entre ícone e texto */
+}
+
+/* ===== Media Queries para Responsividade ===== */
+
+/* Tablet (768px a 1024px) */
+@media (max-width: 1024px) {
+   .header__search {
+      flex: 1;
+      max-width: 400px;
+   }
+
+   .searchHistory {
+      max-height: 200px;
+   }
+
+   .historyTitle {
+      padding: 10px 12px;
+      font-size: 11px;
+      gap: 6px;
+   }
+
+   .historyItem {
+      padding: 10px 12px;
+      gap: 8px;
+      font-size: 13px;
+   }
+
+   .emptyHistory {
+      padding: 15px 12px;
+      font-size: 12px;
+      gap: 6px;
+   }
+}
+
+/* Mobile (até 767px) */
+@media (max-width: 767px) {
+   .header__search {
+      flex: 1;
+      max-width: 200px;
+   }
+
+   .searchHistory {
+      max-height: 180px;
+      border: 1px solid #e0e0e0;
+   }
+
+   .historyTitle {
+      padding: 8px 10px;
+      font-size: 10px;
+      gap: 5px;
+   }
+
+   .historyItem {
+      padding: 8px 10px;
+      gap: 6px;
+      font-size: 12px;
+   }
+
+   .emptyHistory {
+      padding: 12px 10px;
+      font-size: 11px;
+      gap: 5px;
+   }
+}
+
+/* Mobile pequeno (até 480px) */
+@media (max-width: 480px) {
+   .header__search {
+      flex: 1;
+      max-width: 150px;
+   }
+
+   .searchHistory {
+      max-height: 150px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   }
+
+   .historyTitle {
+      padding: 6px 8px;
+      font-size: 9px;
+      gap: 4px;
+   }
+
+   .historyItem {
+      padding: 6px 8px;
+      gap: 5px;
+      font-size: 11px;
+   }
+
+   .emptyHistory {
+      padding: 10px 8px;
+      font-size: 10px;
+      gap: 4px;
+   }
 }

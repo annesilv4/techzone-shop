@@ -11,6 +11,30 @@
     justify-content: center; /* Centraliza horizontalmente */
 }
 
+/* Tablet (768px a 1024px) */
+@media (max-width: 1024px) {
+    .banner {
+        padding: 50px 30px;
+        min-height: 280px;
+    }
+}
+
+/* Mobile (até 767px) */
+@media (max-width: 767px) {
+    .banner {
+        padding: 40px 20px;
+        min-height: 250px;
+    }
+}
+
+/* Mobile pequeno (até 480px) */
+@media (max-width: 480px) {
+    .banner {
+        padding: 30px 15px;
+        min-height: 200px;
+    }
+}
+
 /* Container do conteúdo do banner */
 .content {
     max-width: 600px; /* Largura máxima do conteúdo */
@@ -23,11 +47,59 @@
     font-weight: bold; /* Texto em negrito */
 }
 
+/* Tablet (768px a 1024px) */
+@media (max-width: 1024px) {
+    .content h1 {
+        font-size: 2.1rem;
+        margin-bottom: 18px;
+    }
+}
+
+/* Mobile (até 767px) */
+@media (max-width: 767px) {
+    .content h1 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+}
+
+/* Mobile pequeno (até 480px) */
+@media (max-width: 480px) {
+    .content h1 {
+        font-size: 1.4rem;
+        margin-bottom: 12px;
+    }
+}
+
 /* Parágrafo de descrição */
 .content p {
     font-size: 1.2rem; /* Tamanho médio do texto */
     margin-bottom: 30px; /* Espaçamento abaixo */
     opacity: 0.95; /* Ligeira transparência */
+}
+
+/* Tablet (768px a 1024px) */
+@media (max-width: 1024px) {
+    .content p {
+        font-size: 1.05rem;
+        margin-bottom: 25px;
+    }
+}
+
+/* Mobile (até 767px) */
+@media (max-width: 767px) {
+    .content p {
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+    }
+}
+
+/* Mobile pequeno (até 480px) */
+@media (max-width: 480px) {
+    .content p {
+        font-size: 0.85rem;
+        margin-bottom: 15px;
+    }
 }
 
 /* Botão "Ver Catálogo" */
@@ -47,4 +119,46 @@
 .button:hover {
     transform: translateY(-2px); /* Move o botão 2px para cima */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Adiciona sombra */
+}
+
+/* Tablet (768px a 1024px) */
+@media (max-width: 1024px) {
+    .button {
+        padding: 11px 35px;
+        font-size: 0.95rem;
+        border-radius: 4px;
+    }
+
+    .button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+}
+
+/* Mobile (até 767px) */
+@media (max-width: 767px) {
+    .button {
+        padding: 10px 30px;
+        font-size: 0.9rem;
+        border-radius: 4px;
+    }
+
+    .button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+}
+
+/* Mobile pequeno (até 480px) */
+@media (max-width: 480px) {
+    .button {
+        padding: 9px 24px;
+        font-size: 0.85rem;
+        border-radius: 3px;
+    }
+
+    .button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
 }

@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
 export const Overlay = styled.div`
   position: fixed;
@@ -23,7 +23,7 @@ export const ModalContainer = styled.div`
   width: 350px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   animation: slideDown 0.3s ease-out;
-  z-index: 1000;
+  z-index: 1001;
   max-height: 70vh;
   overflow-y: auto;
 
@@ -38,14 +38,27 @@ export const ModalContainer = styled.div`
     }
   }
 
-  @media (max-width: 768px) {
+  /* Tablet (768px a 1024px) */
+  @media (max-width: 1024px) {
+    width: 320px;
+    left: -80px;
+  }
+
+  /* Mobile (até 767px) */
+  @media (max-width: 767px) {
     position: fixed;
     top: 50%;
     right: 50%;
     left: auto;
     width: 90%;
-    max-width: 100%;
+    max-width: 400px;
     transform: translate(50%, -50%);
+  }
+
+  /* Mobile pequeno (até 480px) */
+  @media (max-width: 480px) {
+    width: 95%;
+    max-width: 320px;
   }
 `;
 
@@ -61,6 +74,33 @@ export const ModalHeader = styled.div`
     font-size: 20px;
     color: #333;
   }
+
+  /* Tablet (768px a 1024px) */
+  @media (max-width: 1024px) {
+    padding: 16px;
+
+    h2 {
+      font-size: 18px;
+    }
+  }
+
+  /* Mobile (até 767px) */
+  @media (max-width: 767px) {
+    padding: 15px;
+
+    h2 {
+      font-size: 16px;
+    }
+  }
+
+  /* Mobile pequeno (até 480px) */
+  @media (max-width: 480px) {
+    padding: 12px;
+
+    h2 {
+      font-size: 14px;
+    }
+  }
 `;
 
 export const CloseButton = styled.button`
@@ -74,10 +114,40 @@ export const CloseButton = styled.button`
   &:hover {
     color: #333;
   }
+
+  /* Tablet (768px a 1024px) */
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+
+  /* Mobile (até 767px) */
+  @media (max-width: 767px) {
+    font-size: 18px;
+  }
+
+  /* Mobile pequeno (até 480px) */
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
 `;
 
 export const ModalContent = styled.div`
   padding: 30px 20px;
+
+  /* Tablet (768px a 1024px) */
+  @media (max-width: 1024px) {
+    padding: 24px 16px;
+  }
+
+  /* Mobile (até 767px) */
+  @media (max-width: 767px) {
+    padding: 20px 15px;
+  }
+
+  /* Mobile pequeno (até 480px) */
+  @media (max-width: 480px) {
+    padding: 16px 12px;
+  }
 `;
 
 export const FormGroup = styled.div`
@@ -91,19 +161,55 @@ export const Label = styled.label`
   font-weight: 600;
   color: #333;
   margin-bottom: 8px;
+
+  /* Tablet (768px a 1024px) */
+  @media (max-width: 1024px) {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  /* Mobile (até 767px) */
+  @media (max-width: 767px) {
+    font-size: 12px;
+  }
+
+  /* Mobile pequeno (até 480px) */
+  @media (max-width: 480px) {
+    font-size: 11px;
+  }
 `;
 
 export const Input = styled.input`
   padding: 12px;
-  border: 1px solid ${props => props.hasError ? '#e74c3c' : '#ddd'};
+  border: 1px solid ${(props) => (props.hasError ? "#e74c3c" : "#ddd")};
   border-radius: 4px;
   font-size: 14px;
   transition: border-color 0.2s;
 
   &:focus {
     outline: none;
-    border-color: ${props => props.hasError ? '#e74c3c' : '#4CAF50'};
-    box-shadow: 0 0 0 3px ${props => props.hasError ? 'rgba(231, 76, 60, 0.1)' : 'rgba(76, 175, 80, 0.1)'};
+    border-color: ${(props) => (props.hasError ? "#e74c3c" : "#4CAF50")};
+    box-shadow: 0 0 0 3px
+      ${(props) =>
+        props.hasError ? "rgba(231, 76, 60, 0.1)" : "rgba(76, 175, 80, 0.1)"};
+  }
+
+  /* Tablet (768px a 1024px) */
+  @media (max-width: 1024px) {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  /* Mobile (até 767px) */
+  @media (max-width: 767px) {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  /* Mobile pequeno (até 480px) */
+  @media (max-width: 480px) {
+    padding: 8px;
+    font-size: 11px;
   }
 `;
 
@@ -111,12 +217,30 @@ export const FormButtons = styled.div`
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
+
+  /* Tablet (768px a 1024px) */
+  @media (max-width: 1024px) {
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  /* Mobile (até 767px) */
+  @media (max-width: 767px) {
+    gap: 8px;
+    margin-bottom: 15px;
+  }
+
+  /* Mobile pequeno (até 480px) */
+  @media (max-width: 480px) {
+    gap: 6px;
+    margin-bottom: 12px;
+  }
 `;
 
 export const SaveButton = styled.button`
   flex: 1;
   padding: 12px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 4px;
@@ -132,6 +256,24 @@ export const SaveButton = styled.button`
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+  }
+
+  /* Tablet (768px a 1024px) */
+  @media (max-width: 1024px) {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  /* Mobile (até 767px) */
+  @media (max-width: 767px) {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  /* Mobile pequeno (até 480px) */
+  @media (max-width: 480px) {
+    padding: 8px;
+    font-size: 11px;
   }
 `;
 
@@ -150,6 +292,24 @@ export const CancelButton = styled.button`
   &:hover {
     background-color: #e0e0e0;
   }
+
+  /* Tablet (768px a 1024px) */
+  @media (max-width: 1024px) {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  /* Mobile (até 767px) */
+  @media (max-width: 767px) {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  /* Mobile pequeno (até 480px) */
+  @media (max-width: 480px) {
+    padding: 8px;
+    font-size: 11px;
+  }
 `;
 
 export const LogoutButton = styled.button`
@@ -167,12 +327,45 @@ export const LogoutButton = styled.button`
   &:hover {
     background-color: #c0392b;
   }
+
+  /* Tablet (768px a 1024px) */
+  @media (max-width: 1024px) {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  /* Mobile (até 767px) */
+  @media (max-width: 767px) {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  /* Mobile pequeno (até 480px) */
+  @media (max-width: 480px) {
+    padding: 8px;
+    font-size: 11px;
+  }
 `;
 
 export const ErrorMessage = styled.span`
   color: #e74c3c;
   font-size: 12px;
   margin-top: 4px;
+
+  /* Tablet (768px a 1024px) */
+  @media (max-width: 1024px) {
+    font-size: 11px;
+  }
+
+  /* Mobile (até 767px) */
+  @media (max-width: 767px) {
+    font-size: 10px;
+  }
+
+  /* Mobile pequeno (até 480px) */
+  @media (max-width: 480px) {
+    font-size: 9px;
+  }
 `;
 
 export const SuccessMessage = styled.div`
@@ -183,4 +376,25 @@ export const SuccessMessage = styled.div`
   border-radius: 4px;
   margin-bottom: 15px;
   font-size: 14px;
+
+  /* Tablet (768px a 1024px) */
+  @media (max-width: 1024px) {
+    padding: 10px;
+    margin-bottom: 12px;
+    font-size: 13px;
+  }
+
+  /* Mobile (até 767px) */
+  @media (max-width: 767px) {
+    padding: 10px;
+    margin-bottom: 12px;
+    font-size: 12px;
+  }
+
+  /* Mobile pequeno (até 480px) */
+  @media (max-width: 480px) {
+    padding: 8px;
+    margin-bottom: 10px;
+    font-size: 11px;
+  }
 `;
