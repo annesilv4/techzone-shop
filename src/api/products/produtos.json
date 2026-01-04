@@ -4,7 +4,7 @@
     "name": "Top 1 Webcam Premium Full HD 1080p com Microfone, USB Plug & Play, Foco Automático",
     "price": 32.9,
     "category": "acessorios",
-    "image": "../../../public/produtos/webcam.jpg",
+    "image": "/produtos/webcam.jpg",
     "description": "Para PC, Notebook, Zoom, Teams, Meet Skype YouTube Discord e Mais – Ideal para Home Office Reuniões e Videochamadas"
   },
   {
@@ -12,7 +12,7 @@
     "name": "Suporte Articulado de Mesa",
     "price": 174.89,
     "category": "acessorios",
-    "image": "../../../public/produtos/suporte-monitor.jpg",
+    "image": "/produtos/suporte-monitor.jpg",
     "description": "ELG, F80N, Suporte Articulado de Mesa, Pistão a Gás, Design Compacto e Retrátil, Ergonômico, Monitores 17'' a 35'', 2kg a 9kg, Preto"
   },
   {
@@ -20,7 +20,7 @@
     "name": "Pendrive Hiksemi Dual Slim 32GB",
     "price": 74.9,
     "category": "acessorios",
-    "image": "../../../public/produtos/pendrive.jpg",
+    "image": "/produtos/pendrive.jpg",
     "description": "Pendrive Hiksemi Dual Slim 32GB com conexão USB C e USB A"
   },
   {
@@ -28,7 +28,7 @@
     "name": "Linsoul Kiwi Ears Cadenza IEM",
     "price": 330.3,
     "category": "acessorios",
-    "image": "../../../public/produtos/linsoul-kiwi.jpg",
+    "image": "/produtos/linsoul-kiwi.jpg",
     "description": "Linsoul Kiwi Ears Cadenza IEM com driver dinâmico de berílio de 10 mm impresso em 3D com plugue intercambiável removível 0,78 cabo IEM de 3,5 mm com 2 pinos para músicos e audiófilos"
   },
   {
@@ -36,7 +36,7 @@
     "name": "PlayStation®5 Slim Digital 825GB",
     "price": 3112.71,
     "category": "gamer",
-    "image": "../../../public/produtos/playstation.jpg",
+    "image": "/produtos/playstation.jpg",
     "description": "PlayStation®5 Slim Digital 825GB – Pacote ASTRO BOT e Gran Turismo 7"
   },
   {
@@ -44,7 +44,7 @@
     "name": "Microsoft Xbox Series X 1TB",
     "price": 4300.0,
     "category": "gamer",
-    "image": "../../../public/produtos/xbox.webp",
+    "image": "/produtos/xbox.webp",
     "description": "Microsoft Xbox Series X 1TB - Bom (Recondicionado)"
   },
   {
@@ -52,7 +52,7 @@
     "name": "Volante Com Pedais Logitech G920 Driving Force",
     "price": 1900.0,
     "category": "gamer",
-    "image": "../../../public/produtos/volante-logitech.webp",
+    "image": "/produtos/volante-logitech.webp",
     "description": "Volante Com Pedais Logitech G920 Driving Force - Xbox 1 E Pc"
   },
   {
@@ -60,7 +60,7 @@
     "name": "Controle Sem Fio Joystick Bluetooth Para Ps4",
     "price": 119.99,
     "category": "gamer",
-    "image": "../../../public/produtos/console-ps4.webp",
+    "image": "/produtos/console-ps4.webp",
     "description": "Controle Sem Fio Joystick Bluetooth Para Ps4 Videogame Tv Preto"
   },
   {
@@ -68,7 +68,7 @@
     "name": "Notebook ASUS Vivobook 15",
     "price": 3299.0,
     "category": "notebooks",
-    "image": "../../../public/produtos/notebook-asus.jpg",
+    "image": "/produtos/notebook-asus.jpg",
     "description": "Notebook ASUS Vivobook 15, Intel Core i5, 16 GB, 512 GB SSD W11 Home, 15.6'' FHD, Quiet Blue -X1504VA-NJ1745W"
   },
   {
@@ -76,7 +76,7 @@
     "name": "Notebook Acer Nitro V15",
     "price": 4567.0,
     "category": "notebooks",
-    "image": "../../../public/produtos/notebook-acer-nitro.webp",
+    "image": "/produtos/notebook-acer-nitro.webp",
     "description": "Notebook Acer Nitro V15 ANV15-51-58AZ Core I5-13420h 8gb 512gb RTX 3050 Cor Preto"
   },
   {
@@ -84,7 +84,7 @@
     "name": "Notebook Samsung Galaxy Book4",
     "price": 2519.1,
     "category": "notebooks",
-    "image": "../../../public/produtos/notebook-samsung.webp",
+    "image": "/produtos/notebook-samsung.webp",
     "description": "Notebook Samsung Galaxy Book4 Intel® U300 (1.20 Ghz, até 4.4GHz, 8 MB L3 Cache), Windows 11 Home, 8GB, 256GB SSD, UHD Graphics, 15.6'' Full HD LED, 1.55kg"
   },
   {
@@ -92,7 +92,7 @@
     "name": "Notebook Vaio Fe16 Amd Ryzen 7",
     "price": 3119.0,
     "category": "notebooks",
-    "image": "../../../public/produtos/notebook-vaio.webp",
+    "image": "/produtos/notebook-vaio.webp",
     "description": "Notebook Vaio Fe16 Amd Ryzen 7-5825u Linux 16gb RAM 512gb Ssd Wi-Fi 6 Tela 16 Ips Wuxga Antirreflexo Cinza Grafite Vjfe69f11xb0121h - Permite upgrade de memória RAM e SSD"
   },
   {
@@ -100,7 +100,7 @@
     "name": "Headset Redragon",
     "price": 159.9,
     "category": "perifericos",
-    "image": "../../../public/produtos/headset-redragon.webp",
+    "image": "/produtos/headset-redragon.webp",
     "description": "Fone Headset Gamer Profissional Mento Rgb H270-rgb Redragon Cor Preto"
   },
   {
@@ -108,7 +108,7 @@
     "name": "Mouse Redragon",
     "price": 199.99,
     "category": "perifericos",
-    "image": "../../../public/produtos/mouse-redragon.jpg",
+    "image": "/produtos/mouse-redragon.jpg",
     "description": "Mouse Gamer Redragon Cobra Pro, Wireless, RGB, 16000 DPI, 8 Botoes, Preto, M711-PRO"
   },
   {
@@ -116,7 +116,7 @@
     "name": "Teclado Redragon",
     "price": 199.99,
     "category": "perifericos",
-    "image": "../../../public/produtos/teclado-redragon.jpg",
+    "image": "/produtos/teclado-redragon.jpg",
     "description": "Teclado Mecanico Gamer Redragon FIZZ, RGB, ABNT2, Switch Marron, Preto, K617-RGB-B-PT-BROWN"
   },
   {
@@ -124,7 +124,7 @@
     "name": "Headset Logitech",
     "price": 890.0,
     "category": "perifericos",
-    "image": "../../../public/produtos/headset-logitech.webp",
+    "image": "/produtos/headset-logitech.webp",
     "description": "Headset Gamer Sem Fio Logitech G733 - Preto"
   },
   {
@@ -132,7 +132,7 @@
     "name": "Smartphone Xiaomi Redmi 15",
     "price": 1127.0,
     "category": "smartphones",
-    "image": "../../../public/produtos/smartphone-xiaomi.webp",
+    "image": "/produtos/smartphone-xiaomi.webp",
     "description": "Smartphone Xiaomi Redmi 15 8gb 256gb Tela 6,9 144hz, Bateria 7.000 Mah, 50 Mp Cinza"
   },
   {
@@ -140,7 +140,7 @@
     "name": "Samsung Galaxy S25 Ultra 5G",
     "price": 5999.0,
     "category": "smartphones",
-    "image": "../../../public/produtos/smartphone-samsung-s25.webp",
+    "image": "/produtos/smartphone-samsung-s25.webp",
     "description": "Samsung Galaxy S25 Ultra 5G 256GB Galaxy AI Titânio Preto 6,9 12GB RAM Câm. Quádrupla 200+50+10+50MP Bateria 5000mAh Dual Chip"
   },
   {
@@ -148,7 +148,7 @@
     "name": "Smartphone Motorola Moto G15",
     "price": 594.15,
     "category": "smartphones",
-    "image": "../../../public/produtos/smartphone-motorola.webp",
+    "image": "/produtos/smartphone-motorola.webp",
     "description": "Smartphone Motorola Moto G15 - 128gb 12gb (4gb Ram+8gb Ram Boost) E Camera 50mp Com Ai E Night Vision Bateria De 5200 Mah Tela Fhd+ 6.7 Com Superbrilho Nfc Azul Claro"
   },
   {
@@ -156,7 +156,7 @@
     "name": "iPhone 17 256 GB 8 GB Preto",
     "price": 7198.96,
     "category": "smartphones",
-    "image": "../../../public/produtos/iphone-17.webp",
+    "image": "/produtos/iphone-17.webp",
     "description": "iPhone 17 256 GB 8 GB Preto - Distribuidor Autorizado"
   },
   {
@@ -164,7 +164,7 @@
     "name": "RELÓGIO REDMI WATCH 5 ACTIVE",
     "price": 239.99,
     "category": "wearables",
-    "image": "../../../public/produtos/wearable-redmi.jpg",
+    "image": "/produtos/wearable-redmi.jpg",
     "description": "RELÓGIO REDMI WATCH 5 ACTIVE"
   },
   {
@@ -172,7 +172,7 @@
     "name": "Smartwatch, HUAWEI WATCH FIT 4",
     "price": 905.04,
     "category": "wearables",
-    "image": "../../../public/produtos/wearable-huawei.jpg",
+    "image": "/produtos/wearable-huawei.jpg",
     "description": "Smartwatch, HUAWEI WATCH FIT 4, Modos Esportivos Aprimorados, Assistente de Bem-Estar Emocional, Bateria com Autonomia de Até 10 Dias, Compatível com iOS e Android, Roxo"
   },
   {
@@ -180,7 +180,7 @@
     "name": "Samsung Galaxy Watch8",
     "price": 1619.11,
     "category": "wearables",
-    "image": "../../../public/produtos/wearable-samsung.jpg",
+    "image": "/produtos/wearable-samsung.jpg",
     "description": "Samsung Galaxy Watch8 Smartwatch 40mm BT, Galaxy AI - Grafite"
   },
   {
@@ -188,7 +188,7 @@
     "name": "Samsung Galaxy Ring Tamanho 7",
     "price": 2372.1,
     "category": "wearables",
-    "image": "../../../public/produtos/ring-samsung.jpg",
+    "image": "/produtos/ring-samsung.jpg",
     "description": "Samsung Galaxy Ring Tamanho 7, Monitor de treino, rastreador de sono, bateria de até 7 dias, Material em titânio - Titânio Preto"
   }
 ]
