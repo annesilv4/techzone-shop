@@ -167,16 +167,19 @@ export const CartItemContainer = styled.div`
 
   /* Mobile (até 767px) */
   @media (max-width: 767px) {
-    flex-direction: column;
-    padding: 15px;
-    gap: 15px;
+    padding: 12px;
+    gap: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
   }
 
   /* Mobile pequeno (até 480px) */
   @media (max-width: 480px) {
-    padding: 12px;
-    gap: 12px;
-    margin-bottom: 12px;
+    padding: 10px;
+    gap: 8px;
+    margin-bottom: 10px;
     border-radius: 6px;
   }
 `;
@@ -197,14 +200,15 @@ export const ItemImage = styled.img`
 
   /* Mobile (até 767px) */
   @media (max-width: 767px) {
-    width: 100%;
-    height: auto;
-    flex-shrink: 1;
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
   }
 
   /* Mobile pequeno (até 480px) */
   @media (max-width: 480px) {
-    max-height: 150px;
+    width: 70px;
+    height: 70px;
   }
 `;
 
@@ -222,12 +226,12 @@ export const ItemDetails = styled.div`
 
   /* Mobile (até 767px) */
   @media (max-width: 767px) {
-    gap: 8px;
+    gap: 5px;
   }
 
   /* Mobile pequeno (até 480px) */
   @media (max-width: 480px) {
-    gap: 6px;
+    gap: 4px;
   }
 `;
 
@@ -244,12 +248,12 @@ export const ItemName = styled.h3`
 
   /* Mobile (até 767px) */
   @media (max-width: 767px) {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
   }
 
   /* Mobile pequeno (até 480px) */
   @media (max-width: 480px) {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
 `;
 
@@ -258,6 +262,7 @@ export const ItemDescription = styled.p`
   font-size: 0.9rem;
   color: #666;
   margin: 0;
+  display: none;
 
   /* Tablet (768px a 1024px) */
   @media (max-width: 1024px) {
@@ -266,12 +271,12 @@ export const ItemDescription = styled.p`
 
   /* Mobile (até 767px) */
   @media (max-width: 767px) {
-    font-size: 0.8rem;
+    display: none;
   }
 
   /* Mobile pequeno (até 480px) */
   @media (max-width: 480px) {
-    font-size: 0.75rem;
+    display: none;
   }
 `;
 
@@ -289,12 +294,12 @@ export const ItemPrice = styled.p`
 
   /* Mobile (até 767px) */
   @media (max-width: 767px) {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   /* Mobile pequeno (até 480px) */
   @media (max-width: 480px) {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
   }
 `;
 
@@ -350,37 +355,37 @@ export const QuantityControl = styled.div`
 
   /* Mobile (até 767px) */
   @media (max-width: 767px) {
-    gap: 6px;
-    margin-top: 8px;
+    gap: 4px;
+    margin-top: 5px;
 
     button {
-      width: 30px;
-      height: 30px;
-      font-size: 0.8rem;
-    }
-
-    input {
-      width: 60px;
-      padding: 5px;
-      font-size: 0.85rem;
-    }
-  }
-
-  /* Mobile pequeno (até 480px) */
-  @media (max-width: 480px) {
-    gap: 5px;
-    margin-top: 6px;
-
-    button {
-      width: 28px;
-      height: 28px;
+      width: 26px;
+      height: 26px;
       font-size: 0.75rem;
     }
 
     input {
       width: 50px;
       padding: 4px;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
+    }
+  }
+
+  /* Mobile pequeno (até 480px) */
+  @media (max-width: 480px) {
+    gap: 3px;
+    margin-top: 4px;
+
+    button {
+      width: 24px;
+      height: 24px;
+      font-size: 0.7rem;
+    }
+
+    input {
+      width: 45px;
+      padding: 3px;
+      font-size: 0.7rem;
     }
   }
 `;
@@ -408,14 +413,14 @@ export const RemoveButton = styled.button`
 
   /* Mobile (até 767px) */
   @media (max-width: 767px) {
-    padding: 6px 12px;
-    font-size: 0.8rem;
+    padding: 5px 10px;
+    font-size: 0.7rem;
   }
 
   /* Mobile pequeno (até 480px) */
   @media (max-width: 480px) {
-    padding: 5px 10px;
-    font-size: 0.75rem;
+    padding: 4px 8px;
+    font-size: 0.65rem;
     border-radius: 3px;
   }
 `;
