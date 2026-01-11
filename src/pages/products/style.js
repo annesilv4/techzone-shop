@@ -229,19 +229,22 @@ export const Price = styled.span`
 `;
 
 export const BtnCard = styled.button`
-    background-color: #667eea; /* Fundo roxo */
+    /* MODIFICADO: Muda cor baseado no estado isAdded */
+    background-color: ${props => props.isAdded ? '#27ae60' : '#6c757d'}; /* Verde se adicionado, cinza se não */
     color: white; /* Texto branco */
     border: none; /* Sem borda */
     padding: 12px 20px; /* Espaçamento interno */
     border-radius: 5px; /* Cantos arredondados */
-    cursor: pointer; /* Cursor de mão */
+    /* MODIFICADO: Cursor muda para not-allowed quando adicionado */
+    cursor: ${props => props.isAdded ? 'not-allowed' : 'pointer'}; /* Cursor de mão ou desabilitado */
     font-size: 0.95rem; /* Tamanho pequeno */
     font-weight: 600; /* Texto mais bold */
     transition: background-color 0.3s ease; /* Animação suave */
     width: 100%; /* Largura total */
 
     &:hover {
-        background-color: #764ba2; /* Roxo mais escuro */
+        /* MODIFICADO: Hover também muda cor baseado no estado */
+        background-color: ${props => props.isAdded ? '#229954' : '#6c757d'}; /* Verde mais escuro ou cinza mais escuro */
     }
 
     /* Media Query para Tablets (até 1024px) */

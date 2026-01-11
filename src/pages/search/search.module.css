@@ -16,7 +16,10 @@
 /* Grade responsiva para exibir produtos */
 .resultsGrid {
   display: grid; /* Usa CSS Grid */
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Cria colunas automáticas com mínimo de 250px */
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(250px, 1fr)
+  ); /* Cria colunas automáticas com mínimo de 250px */
   gap: 20px; /* Espaço entre os itens */
   margin-bottom: 40px; /* Espaço abaixo da grade */
   align-items: stretch; /* Estende itens verticalmente */
@@ -171,7 +174,7 @@
   width: 100%; /* Ocupa toda a largura */
   padding: 10px; /* Espaço interno */
   margin-top: auto; /* Empurra o botão para o final */
-  background: #667eea; /* Fundo azul/roxo */
+  background: #6c757d; /* Fundo azul/roxo */
   color: white; /* Texto branco */
   border: none; /* Remove borda */
   border-radius: 4px; /* Cantos levemente arredondados */
@@ -182,7 +185,19 @@
 
 /* Efeito ao passar o mouse sobre o botão */
 .productCard button:hover {
-  background: #764ba2; /* Muda para roxo mais escuro */
+  background: #6c757d; /* Muda para cinza mais escuro */
+}
+
+/* NOVO: Botão quando o produto já foi adicionado ao carrinho */
+.btnAdded {
+  background: #27ae60 !important; /* Fundo verde */
+  color: white; /* Texto branco */
+  cursor: not-allowed; /* Cursor desabilitado */
+}
+
+/* NOVO: Efeito ao passar mouse no botão já adicionado */
+.btnAdded:hover {
+  background: #229954 !important; /* Verde mais escuro */
 }
 
 /* Mensagem exibida quando não há resultados */
@@ -205,7 +220,10 @@
   }
 
   .resultsGrid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Colunas menores */
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(200px, 1fr)
+    ); /* Colunas menores */
     gap: 15px; /* Reduz espaço entre itens */
   }
 
@@ -234,7 +252,10 @@
   }
 
   .resultsGrid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Colunas ainda menores */
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(150px, 1fr)
+    ); /* Colunas ainda menores */
     gap: 10px; /* Espaço reduzido */
   }
 
@@ -292,7 +313,10 @@
   }
 
   .resultsGrid {
-    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); /* Colunas médias */
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(170px, 1fr)
+    ); /* Colunas médias */
     gap: 12px;
   }
 

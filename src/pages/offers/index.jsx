@@ -17,12 +17,14 @@ import { useOffers } from '../../hooks/useOffers'; // MODIFICADO: Importado hook
  * - Envia preço com desconto ao carrinho
  */
 export default function OffersPage() {
-    // Estado que armazena a imagem selecionada para exibir em modal
-    const [selectedImage, setSelectedImage] = useState(null);
-    // Contexto do carrinho
-    const cartContext = useContext(CartContext);
-    // MODIFICADO: Hook de ofertas com funções de desconto
-    const { getOfferedProductIds, getDiscount, getDiscountedPrice } = useOffers();
+     // Estado que armazena a imagem selecionada para exibir em modal
+     const [selectedImage, setSelectedImage] = useState(null);
+     // NOVO: Estado para rastrear IDs de produtos já adicionados ao carrinho
+     const [addedProducts, setAddedProducts] = useState(new Set());
+     // Contexto do carrinho
+     const cartContext = useContext(CartContext);
+     // MODIFICADO: Hook de ofertas com funções de desconto
+     const { getOfferedProductIds, getDiscount, getDiscountedPrice } = useOffers();
 
     // MODIFICADO: Filtra apenas os produtos em oferta usando IDs do hook
     const offeredProductIds = getOfferedProductIds();
@@ -43,6 +45,7 @@ export default function OffersPage() {
      * 
      * Agora envia o preço com desconto quando o produto estiver em oferta
      * Inclui campos adicionais: precoOriginal e emOferta
+     * NOVO: Marca o produto como adicionado para mudar cor do botão
      * 
      * Dados enviados ao carrinho:
      * - preco: valor final (com desconto se aplicável)
@@ -70,6 +73,9 @@ export default function OffersPage() {
             if (cartContext && cartContext.addToCart) {
                 cartContext.addToCart(cartProduct, 1);
                 console.log('Produto adicionado com sucesso');
+                
+                // NOVO: Marca o produto como adicionado ao carrinho
+                setAddedProducts(prev => new Set(prev).add(product.id));
             } else {
                 console.error('CartContext não disponível');
             }
@@ -126,7 +132,14 @@ export default function OffersPage() {
                                         </div>
                                     </CardFooter>
                                     {/* Botão para adicionar ao carrinho */}
-                                    <BtnCard onClick={() => handleAddToCart(product)}>Adicionar ao Carrinho</BtnCard>
+                                    {/* NOVO: Aplica classe isAdded se o produto já foi adicionado */}
+                                    <BtnCard 
+                                        onClick={() => handleAddToCart(product)}
+                                        disabled={addedProducts.has(product.id)}
+                                        isAdded={addedProducts.has(product.id)}
+                                    >
+                                        {addedProducts.has(product.id) ? 'Adicionado ao Carrinho' : 'Adicionar ao Carrinho'}
+                                    </BtnCard>
                                 </Content>
                             </CardProduct>
                         );

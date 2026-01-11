@@ -259,19 +259,22 @@ export const Price = styled.span`
 `;
 
 export const BtnCard = styled.button`
-    background-color: #667eea;
+    /* MODIFICADO: Muda cor baseado no estado isAdded */
+    background-color: ${props => props.isAdded ? '#27ae60' : '#6c757d'}; /* Verde se adicionado, cinza se não */
     color: white;
     border: none;
     padding: 12px 20px;
     border-radius: 5px;
-    cursor: pointer;
+    /* MODIFICADO: Cursor muda para not-allowed quando adicionado */
+    cursor: ${props => props.isAdded ? 'not-allowed' : 'pointer'};
     font-size: 0.95rem;
     font-weight: 600;
     transition: background-color 0.3s ease;
     width: 100%;
 
     &:hover {
-        background-color: #764ba2;
+        /* MODIFICADO: Hover também muda cor baseado no estado */
+        background-color: ${props => props.isAdded ? '#229954' : '#6c757d'}; /* Verde mais escuro ou cinza mais escuro */
     }
 
     /* Media Query para Tablets (até 1024px) */

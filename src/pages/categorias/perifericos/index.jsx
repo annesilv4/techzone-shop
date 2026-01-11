@@ -8,6 +8,8 @@ import { useOffers } from '../../../hooks/useOffers';
 
 export default function PerifericosPage() {
     const [selectedImage, setSelectedImage] = useState(null);
+    // NOVO: Estado para rastrear IDs de produtos já adicionados ao carrinho
+    const [addedProducts, setAddedProducts] = useState(new Set());
     const cartContext = useContext(CartContext);
     const { isOnOffer, getDiscount, getDiscountedPrice } = useOffers();
 
@@ -42,6 +44,9 @@ export default function PerifericosPage() {
             if (cartContext && cartContext.addToCart) {
                 cartContext.addToCart(cartProduct, 1);
                 console.log('Produto adicionado com sucesso');
+                
+                // NOVO: Marca o produto como adicionado ao carrinho
+                setAddedProducts(prev => new Set(prev).add(product.id));
             } else {
                 console.error('CartContext não disponível');
             }
@@ -95,7 +100,13 @@ export default function PerifericosPage() {
                                             </Price>
                                         </div>
                                     </CardFooter>
-                                    <BtnCard onClick={() => handleAddToCart(product)}>Adicionar ao Carrinho</BtnCard>
+                                    <BtnCard 
+                                        onClick={() => handleAddToCart(product)}
+                                        disabled={addedProducts.has(product.id)}
+                                        isAdded={addedProducts.has(product.id)}
+                                    >
+                                        {addedProducts.has(product.id) ? 'Adicionado ao Carrinho' : 'Adicionar ao Carrinho'}
+                                    </BtnCard>
                                 </Content>
                             </CardProduct>
                         );

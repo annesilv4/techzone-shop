@@ -34,6 +34,8 @@ export default function Catalogo() {
     const [productsByCategory, setProductsByCategory] = useState({});
     // Estado que armazena a imagem selecionada para exibir em modal (null = nenhuma selecionada)
     const [selectedImage, setSelectedImage] = useState(null);
+    // NOVO: Estado para rastrear IDs de produtos já adicionados ao carrinho
+    const [addedProducts, setAddedProducts] = useState(new Set());
     // Contexto do carrinho
     const cartContext = useContext(CartContext);
     // MODIFICADO: Hook de ofertas com funções para calcular descontos
@@ -72,6 +74,7 @@ export default function Catalogo() {
      * 
      * Agora envia o preço com desconto quando o produto estiver em oferta
      * Inclui campos adicionais: precoOriginal e emOferta
+     * NOVO: Marca o produto como adicionado para mudar cor do botão
      */
     const handleAddToCart = (product) => {
         try {
@@ -103,6 +106,9 @@ export default function Catalogo() {
                 // Adiciona o produto ao carrinho com quantidade inicial de 1
                 cartContext.addToCart(cartProduct, 1);
                 console.log('Produto adicionado com sucesso');
+                
+                // NOVO: Marca o produto como adicionado ao carrinho
+                setAddedProducts(prev => new Set(prev).add(product.id));
             } else {
                 // Log de erro se o contexto não está disponível
                 console.error('CartContext não disponível');
@@ -167,7 +173,14 @@ export default function Catalogo() {
                                              </div>
                                          </div>
                                          {/* Botão para adicionar o produto ao carrinho */}
-                                         <button className={styles.btn} onClick={() => handleAddToCart(product)}>Adicionar ao Carrinho</button>
+                                         {/* NOVO: Aplica classe btnAdded se o produto já foi adicionado */}
+                                         <button 
+                                             className={`${styles.btn} ${addedProducts.has(product.id) ? styles.btnAdded : ''}`}
+                                             onClick={() => handleAddToCart(product)}
+                                             disabled={addedProducts.has(product.id)}
+                                         >
+                                             {addedProducts.has(product.id) ? 'Adicionado ao Carrinho' : 'Adicionar ao Carrinho'}
+                                         </button>
                                      </div>
                                  </div>
                              );

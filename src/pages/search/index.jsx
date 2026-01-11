@@ -9,7 +9,7 @@
  * - Envia preço com desconto ao carrinho
  */
 
-import { useContext, useMemo } from 'react';
+import { useContext, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ProductContext } from '../../context/productContext';
 import { CartContext } from '../../context/cartContext';
@@ -19,12 +19,14 @@ import Style from './search.module.css';
 import { useOffers } from '../../hooks/useOffers'; // MODIFICADO: Hook para sistema de descontos
 
 export default function SearchPage() {
-    const [searchParams] = useSearchParams();
-    const cartContext = useContext(CartContext);
-    const { productList } = useContext(ProductContext);
-    // MODIFICADO: Hook de ofertas para calcular descontos nos resultados de busca
-    const { isOnOffer, getDiscount, getDiscountedPrice } = useOffers();
-    const query = searchParams.get('q') || '';
+     const [searchParams] = useSearchParams();
+     const cartContext = useContext(CartContext);
+     const { productList } = useContext(ProductContext);
+     // MODIFICADO: Hook de ofertas para calcular descontos nos resultados de busca
+     const { isOnOffer, getDiscount, getDiscountedPrice } = useOffers();
+     // NOVO: Estado para rastrear IDs de produtos já adicionados ao carrinho
+     const [addedProducts, setAddedProducts] = useState(new Set());
+     const query = searchParams.get('q') || '';
 
     const results = useMemo(() => {
         if (!query.trim()) return [];
@@ -39,6 +41,7 @@ export default function SearchPage() {
      * 
      * Agora envia o preço com desconto quando o produto estiver em oferta
      * Inclui campos adicionais: precoOriginal e emOferta
+     * NOVO: Marca o produto como adicionado para mudar cor do botão
      */
     const handleAddToCart = (product) => {
         try {
@@ -70,6 +73,9 @@ export default function SearchPage() {
                 // Adiciona o produto ao carrinho com quantidade inicial de 1
                 cartContext.addToCart(cartProduct, 1);
                 console.log('Produto adicionado com sucesso');
+                
+                // NOVO: Marca o produto como adicionado ao carrinho
+                setAddedProducts(prev => new Set(prev).add(product.id));
             } else {
                 // Log de erro se o contexto não está disponível
                 console.error('CartContext não disponível');
@@ -121,7 +127,13 @@ export default function SearchPage() {
                                             </p>
                                         </div>
                                     </div>
-                                    <button onClick={() => handleAddToCart(product)}>Adicionar ao Carrinho</button>
+                                    <button 
+                                        className={addedProducts.has(product.id) ? Style.btnAdded : ''}
+                                        onClick={() => handleAddToCart(product)}
+                                        disabled={addedProducts.has(product.id)}
+                                    >
+                                        {addedProducts.has(product.id) ? 'Adicionado ao Carrinho' : 'Adicionar ao Carrinho'}
+                                    </button>
                                 </div>
                             );
                         })}

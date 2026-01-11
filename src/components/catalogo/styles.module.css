@@ -264,8 +264,8 @@
 
 /* Botão "Adicionar ao Carrinho" */
 .btn {
-  background-color: #667eea; /* Fundo roxo */
-  color: white; /* Texto branco */
+  background-color: #6c757d; /* Fundo cinza */
+  color: #fff; /* Texto branco */
   border: none; /* Sem borda */
   padding: 12px 20px; /* Espaçamento interno */
   border-radius: 5px; /* Cantos arredondados */
@@ -276,9 +276,17 @@
   width: 100%; /* Largura total */
 }
 
-/* Efeito ao passar mouse no botão */
-.btn:hover {
-  background-color: #764ba2; /* Roxo mais escuro */
+/* NOVO: Botão quando o produto já foi adicionado ao carrinho */
+.btnAdded {
+  background-color: #27ae60; /* Fundo verde */
+  color: #fff; /* Texto branco */
+  cursor: not-allowed; /* Cursor desabilitado */
+}
+
+/* NOVO: Efeito ao passar mouse no botão já adicionado */
+.btnAdded:hover {
+  color: #fff;
+  background-color: #229954; /* Verde mais escuro */
 }
 
 /* ===== Media Queries para Responsividade ===== */
