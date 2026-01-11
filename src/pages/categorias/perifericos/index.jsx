@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { ProductContainer, TitleContainer, TitlePage, Description, GridProduct, CardProduct, ImageContainer, Content, CardDescription, CardFooter, Price, BtnCard, CardCategory, Modal, ModalContent, CloseBtn, DiscountBadge } from './style';
 import HeaderComponents from '../../../components/header';
 import Navigation from '../../../components/navigation';
@@ -9,12 +9,28 @@ import { useOffers } from '../../../hooks/useOffers';
 export default function PerifericosPage() {
     const [selectedImage, setSelectedImage] = useState(null);
     // NOVO: Estado para rastrear IDs de produtos já adicionados ao carrinho
-    const [addedProducts, setAddedProducts] = useState(new Set());
+    const [addedProducts, setAddedProducts] = useState(() => {
+        const savedAddedProducts = localStorage.getItem('addedProductsPerifericos');
+        if (savedAddedProducts) {
+            try {
+                return new Set(JSON.parse(savedAddedProducts));
+            } catch (e) {
+                return new Set();
+            }
+        }
+        return new Set();
+    });
     const cartContext = useContext(CartContext);
     const { isOnOffer, getDiscount, getDiscountedPrice } = useOffers();
 
     // Filtra produtos da categoria perifericos
     const categoryProducts = produtos.filter(product => product.category === 'perifericos');
+
+
+    // NOVO: Hook para salvar produtos adicionados no localStorage sempre que mudar
+    useEffect(() => {
+        localStorage.setItem('addedProductsPerifericos', JSON.stringify(Array.from(addedProducts)));
+    }, [addedProducts]);
 
     const handleImageClick = (imageSrc) => {
         setSelectedImage(imageSrc);

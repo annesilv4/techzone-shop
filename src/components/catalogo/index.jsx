@@ -34,8 +34,18 @@ export default function Catalogo() {
     const [productsByCategory, setProductsByCategory] = useState({});
     // Estado que armazena a imagem selecionada para exibir em modal (null = nenhuma selecionada)
     const [selectedImage, setSelectedImage] = useState(null);
-    // NOVO: Estado para rastrear IDs de produtos já adicionados ao carrinho
-    const [addedProducts, setAddedProducts] = useState(new Set());
+    // NOVO: Estado para rastrear IDs de produtos já adicionados ao carrinho (com localStorage)
+    const [addedProducts, setAddedProducts] = useState(() => {
+        const savedAddedProducts = localStorage.getItem('addedProductsCatalogo');
+        if (savedAddedProducts) {
+            try {
+                return new Set(JSON.parse(savedAddedProducts));
+            } catch (e) {
+                return new Set();
+            }
+        }
+        return new Set();
+    });
     // Contexto do carrinho
     const cartContext = useContext(CartContext);
     // MODIFICADO: Hook de ofertas com funções para calcular descontos
@@ -56,6 +66,11 @@ export default function Catalogo() {
         // Atualiza o estado com produtos agrupados
         setProductsByCategory(grouped);
     }, []); // [] significa que executa apenas uma vez na montagem
+
+    // NOVO: Hook para salvar produtos adicionados no localStorage sempre que mudar
+    useEffect(() => {
+        localStorage.setItem('addedProductsCatalogo', JSON.stringify(Array.from(addedProducts)));
+    }, [addedProducts]);
 
     // Função chamada quando o usuário clica na imagem de um produto
     const handleImageClick = (imageSrc) => {
@@ -106,7 +121,7 @@ export default function Catalogo() {
                 // Adiciona o produto ao carrinho com quantidade inicial de 1
                 cartContext.addToCart(cartProduct, 1);
                 console.log('Produto adicionado com sucesso');
-                
+
                 // NOVO: Marca o produto como adicionado ao carrinho
                 setAddedProducts(prev => new Set(prev).add(product.id));
             } else {
@@ -135,56 +150,56 @@ export default function Catalogo() {
                     <h2 className={styles.categoryTitle}>{categoryNames[category]}</h2>
                     <div className={styles.grid}>
                         {/* Renderiza cada produto da categoria */}
-                         {productsByCategory[category].map(product => {
-                             const onOffer = isOnOffer(product.id);
-                             const discount = onOffer ? getDiscount(product.id) : 0;
-                             const discountedPrice = getDiscountedPrice(product.price, product.id);
+                        {productsByCategory[category].map(product => {
+                            const onOffer = isOnOffer(product.id);
+                            const discount = onOffer ? getDiscount(product.id) : 0;
+                            const discountedPrice = getDiscountedPrice(product.price, product.id);
 
-                             return (
-                                 <div key={product.id} className={styles.card}>
-                                     {/* Badge de desconto */}
-                                     {onOffer && <div className={styles.discountBadge}>-{discount}%</div>}
+                            return (
+                                <div key={product.id} className={styles.card}>
+                                    {/* Badge de desconto */}
+                                    {onOffer && <div className={styles.discountBadge}>-{discount}%</div>}
 
-                                     {/* Container da imagem com clique para abrir modal */}
-                                     <div className={styles.imageContainer} onClick={() => handleImageClick(product.image)}>
-                                         <img src={product.image} alt={product.name} />
-                                     </div>
-                                     <div className={styles.content}>
-                                         {/* Informações do produto */}
-                                         <h3>{product.name}</h3>
-                                         <p className={styles.description}>{product.description}</p>
-                                         <div className={styles.footer}>
-                                             {/* Preço formatado em BRL */}
-                                             <div className={styles.priceContainer}>
-                                                 {onOffer && (
-                                                     <span className={styles.originalPrice}>
-                                                         {product.price.toLocaleString('pt-BR', {
-                                                             style: 'currency',
-                                                             currency: 'BRL'
-                                                         })}
-                                                     </span>
-                                                 )}
-                                                 <span className={styles.price}>
-                                                     {discountedPrice.toLocaleString('pt-BR', {
-                                                         style: 'currency',
-                                                         currency: 'BRL'
-                                                     })}
-                                                 </span>
-                                             </div>
-                                         </div>
-                                         {/* Botão para adicionar o produto ao carrinho */}
-                                         {/* NOVO: Aplica classe btnAdded se o produto já foi adicionado */}
-                                         <button 
-                                             className={`${styles.btn} ${addedProducts.has(product.id) ? styles.btnAdded : ''}`}
-                                             onClick={() => handleAddToCart(product)}
-                                             disabled={addedProducts.has(product.id)}
-                                         >
-                                             {addedProducts.has(product.id) ? 'Adicionado ao Carrinho' : 'Adicionar ao Carrinho'}
-                                         </button>
-                                     </div>
-                                 </div>
-                             );
-                         })}
+                                    {/* Container da imagem com clique para abrir modal */}
+                                    <div className={styles.imageContainer} onClick={() => handleImageClick(product.image)}>
+                                        <img src={product.image} alt={product.name} />
+                                    </div>
+                                    <div className={styles.content}>
+                                        {/* Informações do produto */}
+                                        <h3>{product.name}</h3>
+                                        <p className={styles.description}>{product.description}</p>
+                                        <div className={styles.footer}>
+                                            {/* Preço formatado em BRL */}
+                                            <div className={styles.priceContainer}>
+                                                {onOffer && (
+                                                    <span className={styles.originalPrice}>
+                                                        {product.price.toLocaleString('pt-BR', {
+                                                            style: 'currency',
+                                                            currency: 'BRL'
+                                                        })}
+                                                    </span>
+                                                )}
+                                                <span className={styles.price}>
+                                                    {discountedPrice.toLocaleString('pt-BR', {
+                                                        style: 'currency',
+                                                        currency: 'BRL'
+                                                    })}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        {/* Botão para adicionar o produto ao carrinho */}
+                                        {/* NOVO: Aplica classe btnAdded se o produto já foi adicionado */}
+                                        <button
+                                            className={`${styles.btn} ${addedProducts.has(product.id) ? styles.btnAdded : ''}`}
+                                            onClick={() => handleAddToCart(product)}
+                                            disabled={addedProducts.has(product.id)}
+                                        >
+                                            {addedProducts.has(product.id) ? 'Adicionado ao Carrinho' : 'Adicionar ao Carrinho'}
+                                        </button>
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             ))}
@@ -202,4 +217,4 @@ export default function Catalogo() {
             )}
         </section>
     )
-    }
+}

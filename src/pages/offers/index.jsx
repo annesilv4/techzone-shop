@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { OffersContainer, TitleContainer, TitlePage, Description, GridProduct, CardProduct, ImageContainer, Content, CardDescription, CardFooter, Price, BtnCard, CardCategory, Modal, ModalContent, CloseBtn, DiscountBadge } from './style';
 import HeaderComponents from '../../components/header';
 import Navigation from '../../components/navigation';
@@ -19,16 +19,31 @@ import { useOffers } from '../../hooks/useOffers'; // MODIFICADO: Importado hook
 export default function OffersPage() {
      // Estado que armazena a imagem selecionada para exibir em modal
      const [selectedImage, setSelectedImage] = useState(null);
-     // NOVO: Estado para rastrear IDs de produtos já adicionados ao carrinho
-     const [addedProducts, setAddedProducts] = useState(new Set());
+     // NOVO: Estado para rastrear IDs de produtos já adicionados ao carrinho (com localStorage)
+     const [addedProducts, setAddedProducts] = useState(() => {
+         const savedAddedProducts = localStorage.getItem('addedProductsOffers');
+         if (savedAddedProducts) {
+             try {
+                 return new Set(JSON.parse(savedAddedProducts));
+             } catch (e) {
+                 return new Set();
+             }
+         }
+         return new Set();
+     });
      // Contexto do carrinho
      const cartContext = useContext(CartContext);
      // MODIFICADO: Hook de ofertas com funções de desconto
      const { getOfferedProductIds, getDiscount, getDiscountedPrice } = useOffers();
 
-    // MODIFICADO: Filtra apenas os produtos em oferta usando IDs do hook
-    const offeredProductIds = getOfferedProductIds();
-    const offeredProducts = produtos.filter(p => offeredProductIds.includes(p.id));
+     // MODIFICADO: Filtra apenas os produtos em oferta usando IDs do hook
+     const offeredProductIds = getOfferedProductIds();
+     const offeredProducts = produtos.filter(p => offeredProductIds.includes(p.id));
+
+    // NOVO: Hook para salvar produtos adicionados no localStorage sempre que mudar
+    useEffect(() => {
+        localStorage.setItem('addedProductsOffers', JSON.stringify(Array.from(addedProducts)));
+    }, [addedProducts]);
 
     // Função chamada quando o usuário clica na imagem de um produto
     const handleImageClick = (imageSrc) => {

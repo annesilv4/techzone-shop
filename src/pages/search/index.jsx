@@ -24,9 +24,24 @@ export default function SearchPage() {
      const { productList } = useContext(ProductContext);
      // MODIFICADO: Hook de ofertas para calcular descontos nos resultados de busca
      const { isOnOffer, getDiscount, getDiscountedPrice } = useOffers();
-     // NOVO: Estado para rastrear IDs de produtos já adicionados ao carrinho
-     const [addedProducts, setAddedProducts] = useState(new Set());
+     // NOVO: Estado para rastrear IDs de produtos já adicionados ao carrinho (com localStorage)
+     const [addedProducts, setAddedProducts] = useState(() => {
+         const savedAddedProducts = localStorage.getItem('addedProductsSearch');
+         if (savedAddedProducts) {
+             try {
+                 return new Set(JSON.parse(savedAddedProducts));
+             } catch (e) {
+                 return new Set();
+             }
+         }
+         return new Set();
+     });
      const query = searchParams.get('q') || '';
+
+    // NOVO: Hook para salvar produtos adicionados no localStorage sempre que mudar
+    useEffect(() => {
+        localStorage.setItem('addedProductsSearch', JSON.stringify(Array.from(addedProducts)));
+    }, [addedProducts]);
 
     const results = useMemo(() => {
         if (!query.trim()) return [];

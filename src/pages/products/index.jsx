@@ -21,28 +21,43 @@ export default function ProductPage() {
      const [productsByCategory, setProductsByCategory] = useState({});
      // Estado que armazena a imagem selecionada para exibir em modal (null = nenhuma selecionada)
      const [selectedImage, setSelectedImage] = useState(null);
-     // NOVO: Estado para rastrear IDs de produtos já adicionados ao carrinho
-     const [addedProducts, setAddedProducts] = useState(new Set());
+     // NOVO: Estado para rastrear IDs de produtos já adicionados ao carrinho (com localStorage)
+     const [addedProducts, setAddedProducts] = useState(() => {
+         const savedAddedProducts = localStorage.getItem('addedProductsProducts');
+         if (savedAddedProducts) {
+             try {
+                 return new Set(JSON.parse(savedAddedProducts));
+             } catch (e) {
+                 return new Set();
+             }
+         }
+         return new Set();
+     });
      // Contexto do carrinho
      const cartContext = useContext(CartContext);
      // Hook de ofertas
      const { isOnOffer, getDiscount, getDiscountedPrice } = useOffers();
 
-    // Hook que executa quando o componente monta
-    useEffect(() => {
-        // Agrupa os produtos por categoria usando reduce
-        const grouped = produtos.reduce((acc, product) => {
-            // Se a categoria ainda não existe no acumulador, cria um array vazio
-            if (!acc[product.category]) {
-                acc[product.category] = [];
-            }
-            // Adiciona o produto ao array da sua categoria
-            acc[product.category].push(product);
-            return acc;
-        }, {});
-        // Atualiza o estado com produtos agrupados
-        setProductsByCategory(grouped);
-    }, []); // [] significa que executa apenas uma vez na montagem
+     // Hook que executa quando o componente monta
+     useEffect(() => {
+         // Agrupa os produtos por categoria usando reduce
+         const grouped = produtos.reduce((acc, product) => {
+             // Se a categoria ainda não existe no acumulador, cria um array vazio
+             if (!acc[product.category]) {
+                 acc[product.category] = [];
+             }
+             // Adiciona o produto ao array da sua categoria
+             acc[product.category].push(product);
+             return acc;
+         }, {});
+         // Atualiza o estado com produtos agrupados
+         setProductsByCategory(grouped);
+     }, []); // [] significa que executa apenas uma vez na montagem
+
+     // NOVO: Hook para salvar produtos adicionados no localStorage sempre que mudar
+     useEffect(() => {
+         localStorage.setItem('addedProductsProducts', JSON.stringify(Array.from(addedProducts)));
+     }, [addedProducts]);
 
     // Função chamada quando o usuário clica na imagem de um produto
     const handleImageClick = (imageSrc) => {
