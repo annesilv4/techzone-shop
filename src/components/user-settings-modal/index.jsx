@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { UserContext } from '../../context/userContext';
@@ -29,6 +29,17 @@ export default function UserSettingsModal({ isOpen, onClose }) {
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState({ type: '', text: '' });
   const [loading, setLoading] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -80,7 +91,7 @@ export default function UserSettingsModal({ isOpen, onClose }) {
 
       userContext.login(updatedUser);
       setMessage({ type: 'success', text: 'Perfil atualizado com sucesso!' });
-      
+
       setTimeout(() => {
         onClose();
       }, 1500);
@@ -139,6 +150,22 @@ export default function UserSettingsModal({ isOpen, onClose }) {
               />
               {errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
             </FormGroup>
+
+            {isMobile && (
+              <FormGroup>
+                <Label>CEP Cadastrado</Label>
+                <Input
+                  type="text"
+                  value={localStorage.getItem('cep') || 'Nenhum CEP cadastrado'}
+                  readOnly
+                />
+                {localStorage.getItem('address') && (
+                  <p style={{ marginTop: '8px', fontSize: '12px', color: '#666' }}>
+                    {JSON.parse(localStorage.getItem('address')).localidade}, {JSON.parse(localStorage.getItem('address')).uf}
+                  </p>
+                )}
+              </FormGroup>
+            )}
 
             {message.text && (
               message.type === 'success' ? (

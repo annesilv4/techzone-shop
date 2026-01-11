@@ -6,6 +6,7 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 
 // Importação dos componentes styled do arquivo de estilos
 import { Nav, CepContainer, CepInput, ChevronIcon, NavLink, NavItem, DropdownMenu, DropdownItem } from './styles';
+import { useEffect } from 'react';
 
 // Componente de navegação secundária com busca de CEP e filtro de categorias
 export default function Navigation() {
@@ -21,6 +22,20 @@ export default function Navigation() {
     // Estado para controlar o loading da busca de CEP
     const [loading, setLoading] = useState(false);
 
+    useEffect(() => {
+        const savedCep = localStorage.getItem('cep');
+        const savedAddress = localStorage.getItem('address');
+
+        if (savedAddress) {
+            setAddress(JSON.parse(savedAddress));
+        }
+
+        if (savedCep) {
+            setCep(savedCep);
+        }
+    }, []);
+
+
     // Função para tratar a mudança no input de CEP com formatação automática
     const handleCepChange = useCallback((e) => {
         // Remove todos os caracteres que não são números
@@ -33,6 +48,7 @@ export default function Navigation() {
 
         // Atualiza o estado com o novo valor
         setCep(value);
+        localStorage.setItem('cep', value);
 
         // Busca o endereço na API ViaCEP quando o CEP está completo (8 dígitos)
         if (value.replace('-', '').length === 8) {
@@ -51,15 +67,18 @@ export default function Navigation() {
             // Verifica se a API retornou erro (CEP inválido)
             if (data.erro) {
                 setAddress(null);
+                localStorage.removeItem('address');
                 alert('CEP não encontrado');
             } else {
                 // Armazena os dados do endereço encontrado
                 setAddress(data);
+                localStorage.setItem('address', JSON.stringify(data));
             }
         } catch (error) {
             // Trata erros de conexão ou parsing
             console.error('Erro ao buscar CEP:', error);
             setAddress(null);
+            localStorage.removeItem('address');
         } finally {
             // Para o indicador de loading
             setLoading(false);
