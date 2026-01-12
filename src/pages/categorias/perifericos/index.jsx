@@ -4,33 +4,51 @@ import HeaderComponents from '../../../components/header';
 import Navigation from '../../../components/navigation';
 import produtos from '../../../api/products/produtos.json';
 import { CartContext } from '../../../context/cartContext';
+import { UserContext } from '../../../context/userContext';
 import { useOffers } from '../../../hooks/useOffers';
 
 export default function PerifericosPage() {
     const [selectedImage, setSelectedImage] = useState(null);
-    // NOVO: Estado para rastrear IDs de produtos já adicionados ao carrinho
-    const [addedProducts, setAddedProducts] = useState(() => {
-        const savedAddedProducts = localStorage.getItem('addedProducts');
-        if (savedAddedProducts) {
-            try {
-                return new Set(JSON.parse(savedAddedProducts));
-            } catch (e) {
-                return new Set();
-            }
-        }
-        return new Set();
-    });
+    // NOVO: Estado para rastrear IDs de produtos já adicionados ao carrinho (isolado por usuário)
+    const [addedProducts, setAddedProducts] = useState(new Set());
     const cartContext = useContext(CartContext);
+    const userContext = useContext(UserContext);
     const { isOnOffer, getDiscount, getDiscountedPrice } = useOffers();
 
     // Filtra produtos da categoria perifericos
     const categoryProducts = produtos.filter(product => product.category === 'perifericos');
 
-
-    // NOVO: Hook para salvar produtos adicionados no localStorage sempre que mudar
+    // MODIFICADO: Hook para carregar produtos adicionados quando o usuário muda
+    // Agora isolado por usuário usando userId na chave do localStorage
     useEffect(() => {
-        localStorage.setItem('addedProducts', JSON.stringify(Array.from(addedProducts)));
-    }, [addedProducts]);
+        const userId = userContext?.user?._id;
+         
+        if (userId) {
+            // Usuário está logado - carrega seus produtos adicionados
+            const savedAddedProducts = localStorage.getItem(`addedProducts_${userId}`);
+            if (savedAddedProducts) {
+                try {
+                    setAddedProducts(new Set(JSON.parse(savedAddedProducts)));
+                } catch (e) {
+                    setAddedProducts(new Set());
+                }
+            } else {
+                setAddedProducts(new Set());
+            }
+        } else {
+            // Usuário não está logado - reseta produtos adicionados
+            setAddedProducts(new Set());
+        }
+    }, [userContext?.user?._id]);
+
+    // MODIFICADO: Hook para salvar produtos adicionados no localStorage quando mudam
+    // Agora isolado por usuário
+    useEffect(() => {
+        const userId = userContext?.user?._id;
+        if (userId) {
+            localStorage.setItem(`addedProducts_${userId}`, JSON.stringify(Array.from(addedProducts)));
+        }
+    }, [addedProducts, userContext?.user?._id]);
 
     const handleImageClick = (imageSrc) => {
         setSelectedImage(imageSrc);

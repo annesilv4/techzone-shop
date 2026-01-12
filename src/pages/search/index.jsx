@@ -9,10 +9,11 @@
  * - Envia preço com desconto ao carrinho
  */
 
-import { useContext, useMemo, useState } from 'react';
+import { useContext, useMemo, useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ProductContext } from '../../context/productContext';
 import { CartContext } from '../../context/cartContext';
+import { UserContext } from '../../context/userContext';
 import HeaderComponents from '../../components/header';
 import Navigation from '../../components/navigation';
 import Style from './search.module.css';
@@ -24,24 +25,43 @@ export default function SearchPage() {
      const { productList } = useContext(ProductContext);
      // MODIFICADO: Hook de ofertas para calcular descontos nos resultados de busca
      const { isOnOffer, getDiscount, getDiscountedPrice } = useOffers();
-     // NOVO: Estado para rastrear IDs de produtos já adicionados ao carrinho (com localStorage compartilhado globalmente)
-     const [addedProducts, setAddedProducts] = useState(() => {
-         const savedAddedProducts = localStorage.getItem('addedProducts');
-         if (savedAddedProducts) {
-             try {
-                 return new Set(JSON.parse(savedAddedProducts));
-             } catch (e) {
-                 return new Set();
-             }
-         }
-         return new Set();
-     });
+     // NOVO: Estado para rastrear IDs de produtos já adicionados ao carrinho (isolado por usuário)
+     const [addedProducts, setAddedProducts] = useState(new Set());
+     // Contexto do usuário para isolamento de dados
+     const userContext = useContext(UserContext);
      const query = searchParams.get('q') || '';
 
-    // NOVO: Hook para salvar produtos adicionados no localStorage compartilhado globalmente sempre que mudar
-    useEffect(() => {
-        localStorage.setItem('addedProducts', JSON.stringify(Array.from(addedProducts)));
-    }, [addedProducts]);
+     // MODIFICADO: Hook para carregar produtos adicionados quando o usuário muda
+     // Agora isolado por usuário usando userId na chave do localStorage
+     useEffect(() => {
+         const userId = userContext?.user?._id;
+         
+         if (userId) {
+             // Usuário está logado - carrega seus produtos adicionados
+             const savedAddedProducts = localStorage.getItem(`addedProducts_${userId}`);
+             if (savedAddedProducts) {
+                 try {
+                     setAddedProducts(new Set(JSON.parse(savedAddedProducts)));
+                 } catch (e) {
+                     setAddedProducts(new Set());
+                 }
+             } else {
+                 setAddedProducts(new Set());
+             }
+         } else {
+             // Usuário não está logado - reseta produtos adicionados
+             setAddedProducts(new Set());
+         }
+     }, [userContext?.user?._id]);
+
+     // MODIFICADO: Hook para salvar produtos adicionados no localStorage quando mudam
+     // Agora isolado por usuário
+     useEffect(() => {
+         const userId = userContext?.user?._id;
+         if (userId) {
+             localStorage.setItem(`addedProducts_${userId}`, JSON.stringify(Array.from(addedProducts)));
+         }
+     }, [addedProducts, userContext?.user?._id]);
 
     const results = useMemo(() => {
         if (!query.trim()) return [];
