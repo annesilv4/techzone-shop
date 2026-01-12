@@ -10,7 +10,7 @@ export default function SmartphonesPage() {
      const [selectedImage, setSelectedImage] = useState(null);
      // NOVO: Estado para rastrear IDs de produtos já adicionados ao carrinho
      const [addedProducts, setAddedProducts] = useState(() => {
-        const savedAddedProducts = localStorage.getItem('addedProductsSmartphones');
+        const savedAddedProducts = localStorage.getItem('addedProducts');
         if (savedAddedProducts) {
             try {
                 return new Set(JSON.parse(savedAddedProducts));
@@ -29,7 +29,7 @@ export default function SmartphonesPage() {
 
     // NOVO: Hook para salvar produtos adicionados no localStorage sempre que mudar
     useEffect(() => {
-        localStorage.setItem('addedProductsSmartphones', JSON.stringify(Array.from(addedProducts)));
+        localStorage.setItem('addedProducts', JSON.stringify(Array.from(addedProducts)));
     }, [addedProducts]);
 
     const handleImageClick = (imageSrc) => {

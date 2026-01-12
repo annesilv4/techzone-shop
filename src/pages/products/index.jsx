@@ -21,9 +21,9 @@ export default function ProductPage() {
      const [productsByCategory, setProductsByCategory] = useState({});
      // Estado que armazena a imagem selecionada para exibir em modal (null = nenhuma selecionada)
      const [selectedImage, setSelectedImage] = useState(null);
-     // NOVO: Estado para rastrear IDs de produtos já adicionados ao carrinho (com localStorage)
+     // NOVO: Estado para rastrear IDs de produtos já adicionados ao carrinho (com localStorage compartilhado globalmente)
      const [addedProducts, setAddedProducts] = useState(() => {
-         const savedAddedProducts = localStorage.getItem('addedProductsProducts');
+         const savedAddedProducts = localStorage.getItem('addedProducts');
          if (savedAddedProducts) {
              try {
                  return new Set(JSON.parse(savedAddedProducts));
@@ -54,9 +54,9 @@ export default function ProductPage() {
          setProductsByCategory(grouped);
      }, []); // [] significa que executa apenas uma vez na montagem
 
-     // NOVO: Hook para salvar produtos adicionados no localStorage sempre que mudar
+     // NOVO: Hook para salvar produtos adicionados no localStorage compartilhado globalmente sempre que mudar
      useEffect(() => {
-         localStorage.setItem('addedProductsProducts', JSON.stringify(Array.from(addedProducts)));
+         localStorage.setItem('addedProducts', JSON.stringify(Array.from(addedProducts)));
      }, [addedProducts]);
 
     // Função chamada quando o usuário clica na imagem de um produto
