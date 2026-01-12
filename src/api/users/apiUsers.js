@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiURL = "https://crudcrud.com/api/5d73d23715b34823a3d45997a2a0d26d/users";
+const apiURL = "https://crudcrud.com/api/e48102517fd144f78ca55f2fea0f6d4d/users";
 
 export const getUser = async () => {
     try {
